@@ -49,10 +49,11 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
-.carousel-container .skill-category {
+.carousel-container .skill-category,
+.carousel-container .project-card {
   flex-shrink: 0;
   scroll-snap-align: start;
-  width: 280px; /* Fixed width for consistent size */
+  width: 320px; /* Increased width for project cards */
 }
 
 .carousel-button {
@@ -139,7 +140,7 @@
   color: #3b82f6;
 }
 
-.footer-tech-western {
+.footer-tech-stack .icon {
   color: #60a5fa;
 }
 
@@ -390,8 +391,18 @@
 }
 
 .project-card {
-  min-height: 400px;
-  perspective: 1000px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(96, 165, 250, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(15px);
+  width: 320px; /* Increased width for larger project cards */
+  box-sizing: border-box;
+  min-height: 450px; /* Increased height for flip cards */
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
 }
 
 .project-item {
@@ -418,7 +429,7 @@
 
 .project-img img {
   width: 100%;
-  height: 192px;
+  height: 220px; /* Increased image height */
   object-fit: cover;
   border-radius: 8px;
 }
@@ -525,6 +536,11 @@
   transform: scale(1.05);
 }
 
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+}
+
 .icon {
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -540,7 +556,7 @@
   border-radius: 12px;
   padding: 1.5rem;
   backdrop-filter: blur(15px);
-  width: 280px; /* Fixed width for consistent size */
+  width: 280px; /* Unchanged for skills cards */
   box-sizing: border-box;
 }
 
@@ -582,9 +598,7 @@
   transition: transform 0.3s ease;
 }
 
-.project-tag:hover {
-  transform: scale(1.1);
-}
+
 
 /* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -635,11 +649,12 @@
   }
 
   .project-card {
-    min-height: 320px;
+    min-height: 360px; /* Adjusted for larger cards */
+    width: 280px; /* Adjusted for larger cards */
   }
 
   .project-img img {
-    height: 140px;
+    height: 160px; /* Adjusted image height */
   }
 
   .project-content p, .back p {
@@ -649,6 +664,11 @@
   .btn {
     padding: 10px 18px;
     font-size: 0.85rem;
+  }
+
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 
   .navbar {
@@ -684,7 +704,7 @@
 
   .skill-category {
     padding: 1rem;
-    width: 240px; /* Smaller fixed width for mobile */
+    width: 240px; /* Unchanged for skills cards */
   }
 
   .skill-progress {
@@ -737,11 +757,12 @@
   }
 
   .project-card {
-    min-height: 280px;
+    min-height: 320px; /* Adjusted for larger cards */
+    width: 240px; /* Adjusted for larger cards */
   }
 
   .project-img img {
-    height: 120px;
+    height: 140px; /* Adjusted image height */
   }
 
   .project-content p, .back p {
@@ -751,6 +772,11 @@
   .btn {
     padding: 8px 16px;
     font-size: 0.8rem;
+  }
+
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 0.7rem;
   }
 
   .navbar {
@@ -792,7 +818,7 @@
 
   .skill-category {
     padding: 0.75rem;
-    width: 200px; /* Smallest fixed width for small screens */
+    width: 200px; /* Unchanged for skills cards */
   }
 
   .skill-progress {
@@ -817,6 +843,7 @@
   .btn,
   .btn-primary,
   .btn-outline,
+  .btn-sm,
   .icon,
   .project-tag,
   .contact-form input,
@@ -827,6 +854,7 @@
   .footer-email,
   .back-to-top,
   .skill-category,
+  .project-card,
   .skill-progress-bar,
   .tech-logo,
   .carousel-button {
@@ -841,6 +869,7 @@
   }
 
   .skill-category:hover,
+  .project-card:hover,
   .skill-item:hover .skill-progress-bar,
   .tech-logo:hover,
   .carousel-button:hover {

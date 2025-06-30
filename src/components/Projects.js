@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import '../styles/App.css';
 
 const Projects = () => {
   const [flippedCard, setFlippedCard] = useState(null);
+  const scrollRef = useRef(null);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 50 },
@@ -68,8 +70,8 @@ const Projects = () => {
       title: 'Project HillTop-E Commerce Web (ongoing-project)',
       description: '',
       extendedDescription: 'Redesigning HillTop Clothing’s website with React to improve UI/UX, performance, and support future e-commerce growth and scalability.',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphzn-B0t2cQzZgAvA2FXZkhTEkayMw26UqA&s',
-      tags: ['React','MongoDB'],
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbnhq0cQzZgAvA2FXZkhTEkayMw26UqA&s',
+      tags: ['React', 'MongoDB'],
       github: 'https://github.com/AshenRuvinda/Project-HillTop',
       website: 'https://project-hill-top.vercel.app/',
     },
@@ -83,100 +85,147 @@ const Projects = () => {
       Python: 'bg-yellow-500 text-yellow-100',
       React: 'bg-emerald-500 text-emerald-100',
       SQL: 'bg-purple-500 text-purple-100',
+      MongoDB: 'bg-green-600 text-green-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
 
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.offsetWidth * 0.8; // Scroll 80% of container width
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section" aria-label="Projects carousel">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold mb-2">My Projects</h2>
-          <p className="text-lg">What I've been working on</p>
+        <div className="text-center mb-12">
+          <motion.h2
+            className="text-4xl font-bold mb-2"
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+          >
+            My Projects
+          </motion.h2>
+          <motion.p
+            className="text-lg text-gray-300"
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
+          >
+            What I've been working on
+          </motion.p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="card p-4 project-card"
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: index * 0.2 }}
-              onHoverStart={() => setFlippedCard(index)}
-              onHoverEnd={() => setFlippedCard(null)}
-              onClick={() => setFlippedCard(flippedCard === index ? null : index)}
-              whileHover={{ scale: 1.05 }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  className="project-item relative w-full h-full"
-                  variants={flip}
-                  initial="front"
-                  animate={flippedCard === index ? 'back' : 'front'}
-                  style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
-                >
-                  {/* Front Side */}
+        <div className="relative">
+          <button
+            className="carousel-button left-0"
+            onClick={() => scroll('left')}
+            aria-label="Scroll projects carousel left"
+          >
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <div
+            className="carousel-container flex overflow-x-auto scroll-smooth"
+            ref={scrollRef}
+            role="group"
+            aria-label="Project cards"
+          >
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="project-card w-[320px] mx-3"
+                variants={fadeIn}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: index * 0.2 }}
+                onHoverStart={() => setFlippedCard(index)}
+                onHoverEnd={() => setFlippedCard(null)}
+                onClick={() => setFlippedCard(flippedCard === index ? null : index)}
+                whileHover={{ scale: 1.05 }}
+              >
+                <AnimatePresence mode="wait">
                   <motion.div
-                    className="front absolute w-full h-full flex flex-col"
-                    style={{ backfaceVisibility: 'hidden' }}
+                    className="project-item relative w-full h-full"
+                    variants={flip}
+                    initial="front"
+                    animate={flippedCard === index ? 'back' : 'front'}
+                    style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
                   >
-                    <div className="project-img mb-4">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-lg w-full h-48 object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="project-content flex-grow">
-                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                      <div className="project-tags flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                    {/* Front Side */}
+                    <motion.div
+                      className="front absolute w-full h-full flex flex-col"
+                      style={{ backfaceVisibility: 'hidden' }}
+                    >
+                      <div className="project-img mb-4">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="rounded-lg w-full h-56 object-cover"
+                          loading="lazy"
+                        />
                       </div>
-                    </div>
-                  </motion.div>
-                  {/* Back Side */}
-                  <motion.div
-                    className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-4 flex flex-col justify-center"
-                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                  >
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="mb-4 text-sm">{project.extendedDescription}</p>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <a
-                        href={project.github}
-                        className="btn btn-primary btn-sm flex items-center"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <i className="fas fa-eye mr-2"></i> View Project
-                      </a>
-                      {project.website && (
+                      <div className="project-content flex-grow">
+                        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                        <div className="project-tags flex flex-wrap gap-2 mb-4">
+                          {project.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                    {/* Back Side */}
+                    <motion.div
+                      className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
+                      style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                    >
+                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                      <p className="mb-4 text-sm">{project.extendedDescription}</p>
+                      <div className="flex flex-wrap gap-3 justify-center">
                         <a
-                          href={project.website}
-                          className="btn btn-outline btn-sm flex items-center"
+                          href={project.github}
+                          className="btn btn-primary btn-sm flex items-center"
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <i className="fas fa-globe mr-2"></i> Visit Website
+                          <i className="fas fa-eye mr-2"></i> View Project
                         </a>
-                      )}
-                    </div>
+                        {project.website && (
+                          <a
+                            href={project.website}
+                            className="btn btn-outline btn-sm flex items-center"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <i className="fas fa-globe mr-2"></i> Visit Website
+                          </a>
+                        )}
+                      </div>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+          <button
+            className="carousel-button right-0"
+            onClick={() => scroll('right')}
+            aria-label="Scroll projects carousel right"
+          >
+            <i className="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
