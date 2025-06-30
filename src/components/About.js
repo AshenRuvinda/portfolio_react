@@ -67,7 +67,7 @@ const About = () => {
             <div className="about-img relative w-64 h-64 md:w-80 md:h-80 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-lg opacity-20 animate-pulse"></div>
               <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf3358de"
+                src="https://github.com/AshenRuvinda/ProjectImages/blob/master/IMG_6799-removebg-preview.png?raw=true"
                 alt="Ashen Ruvinda, Software Engineer"
                 className="rounded-lg w-full h-full object-cover shadow-2xl border-4 border-gray-800"
               />
