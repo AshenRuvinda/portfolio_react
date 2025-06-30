@@ -11,7 +11,6 @@
     color: #fff;
   }
 
-  /* Apply Poppins to all text elements, except headings */
   h1, h2, h3, h4 {
     font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
@@ -23,7 +22,6 @@
   }
 }
 
-/* Tech logo styles for progress bars */
 .tech-logo {
   color: #60a5fa;
   font-size: 1.25rem;
@@ -35,25 +33,24 @@
   color: #3b82f6;
 }
 
-/* Carousel styles */
 .carousel-container {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .carousel-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .carousel-container .skill-category,
 .carousel-container .project-card {
   flex-shrink: 0;
   scroll-snap-align: start;
-  width: 320px; /* Increased width for project cards */
+  width: 320px;
 }
 
 .carousel-button {
@@ -87,7 +84,6 @@
   right: 10px;
 }
 
-/* Footer-specific styles */
 .footer {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
   backdrop-filter: blur(15px);
@@ -161,7 +157,6 @@
   color: #3b82f6;
 }
 
-/* Section styles */
 .section {
   min-height: 100vh;
   padding: 80px 16px;
@@ -235,16 +230,18 @@
   position: absolute;
   color: rgba(96, 165, 250, 0.2);
   font-family: 'Courier New', monospace;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
-  pointer-events: none;
+  pointer-events: auto;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .hero-particles .tech-icon, .about-particles .tech-icon {
   position: absolute;
   color: rgba(96, 165, 250, 0.25);
-  font-size: 2.5rem;
-  pointer-events: none;
+  font-size: 3rem;
+  pointer-events: auto;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .bracket-1 {
@@ -372,6 +369,12 @@
   100% { transform: rotate(360deg); }
 }
 
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3); }
+  100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.2); }
+}
+
 .card {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(96, 165, 250, 0.3);
@@ -396,9 +399,9 @@
   border-radius: 12px;
   padding: 1.5rem;
   backdrop-filter: blur(15px);
-  width: 320px; /* Increased width for larger project cards */
+  width: 320px;
   box-sizing: border-box;
-  min-height: 450px; /* Increased height for flip cards */
+  min-height: 450px;
 }
 
 .project-card:hover {
@@ -429,7 +432,7 @@
 
 .project-img img {
   width: 100%;
-  height: 220px; /* Increased image height */
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -467,7 +470,7 @@
 
 .contact-form input,
 .contact-form textarea {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
   border-radius: 8px;
@@ -556,7 +559,7 @@
   border-radius: 12px;
   padding: 1.5rem;
   backdrop-filter: blur(15px);
-  width: 280px; /* Unchanged for skills cards */
+  width: 280px;
   box-sizing: border-box;
 }
 
@@ -598,9 +601,85 @@
   transition: transform 0.3s ease;
 }
 
+.project-tag:hover {
+  transform: scale(1.1);
+}
 
+.hero-img {
+  position: relative;
+  transition: transform 0.3s ease;
+}
 
-/* Enhanced Mobile Responsiveness */
+.hero-img:hover {
+  transform: scale(1.05);
+}
+
+.project-count-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.2));
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+  z-index: 20;
+}
+
+.project-count-btn i {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.project-count-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: none;
+}
+
+.project-count-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+}
+
+.project-count-bubble {
+  width: 160px;
+  padding: 12px 16px;
+  border-radius: 16px 16px 0 16px;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(59, 130, 246, 0.3));
+  backdrop-filter: blur(8px);
+  border: 2px solid #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  position: absolute;
+  bottom: 68px;
+  right: 5px;
+  z-index: 20;
+}
+
+.project-count-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 14px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #60a5fa;
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 60px 12px;
@@ -608,7 +687,7 @@
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   h2 {
@@ -625,8 +704,7 @@
 
   .hero-particles .bracket, .about-particles .bracket,
   .hero-particles .tech-icon, .about-particles .tech-icon {
-    font-size: 1.8rem;
-    display: none;
+    font-size: 2rem;
   }
 
   .hero-particles .particle-1, .about-particles .particle-1 {
@@ -649,12 +727,12 @@
   }
 
   .project-card {
-    min-height: 360px; /* Adjusted for larger cards */
-    width: 280px; /* Adjusted for larger cards */
+    min-height: 360px;
+    width: 280px;
   }
 
   .project-img img {
-    height: 160px; /* Adjusted image height */
+    height: 160px;
   }
 
   .project-content p, .back p {
@@ -704,7 +782,7 @@
 
   .skill-category {
     padding: 1rem;
-    width: 240px; /* Unchanged for skills cards */
+    width: 240px;
   }
 
   .skill-progress {
@@ -724,6 +802,58 @@
     height: 32px;
     font-size: 0.9rem;
   }
+
+  .hero-img {
+    width: 288px;
+    height: 288px;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .project-count-btn {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .project-count-btn i {
+    font-size: 1.25rem;
+  }
+
+  .project-count-bubble {
+    width: 140px;
+    padding: 10px 14px;
+    bottom: 60px;
+    right: 16px;
+  }
+
+  .project-count-bubble::after {
+    bottom: -8px;
+    right: 12px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #60a5fa;
+  }
+
+  .project-count-bubble span {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -732,7 +862,7 @@
   }
 
   h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
   h2 {
@@ -757,12 +887,12 @@
   }
 
   .project-card {
-    min-height: 320px; /* Adjusted for larger cards */
-    width: 240px; /* Adjusted for larger cards */
+    min-height: 320px;
+    width: 240px;
   }
 
   .project-img img {
-    height: 140px; /* Adjusted image height */
+    height: 140px;
   }
 
   .project-content p, .back p {
@@ -818,7 +948,7 @@
 
   .skill-category {
     padding: 0.75rem;
-    width: 200px; /* Unchanged for skills cards */
+    width: 200px;
   }
 
   .skill-progress {
@@ -834,9 +964,60 @@
     height: 28px;
     font-size: 0.8rem;
   }
+
+  .hero-img {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 0.875rem;
+  }
+
+  .project-count-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .project-count-btn i {
+    font-size: 1rem;
+  }
+
+  .project-count-bubble {
+    width: 120px;
+    padding: 8px 12px;
+    bottom: 52px;
+    right: 12px;
+  }
+
+  .project-count-bubble::after {
+    bottom: -6px;
+    right: 10px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #60a5fa;
+  }
+
+  .project-count-bubble span {
+    font-size: 0.875rem;
+  }
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .section,
   .card,
@@ -857,14 +1038,21 @@
   .project-card,
   .skill-progress-bar,
   .tech-logo,
-  .carousel-button {
+  .carousel-button,
+  .hero-img,
+  .hero-particles .bracket,
+  .hero-particles .tech-icon,
+  .project-count-btn,
+  .project-count-bubble {
     transition: none;
   }
 
   .hero-gradient, .about-gradient,
   .hero-particles .particle, .about-particles .particle,
   .hero-particles .bracket, .about-particles .bracket,
-  .hero-particles .tech-icon, .about-particles .tech-icon {
+  .hero-particles .tech-icon, .about-particles .tech-icon,
+  .project-count-btn,
+  .project-count-bubble {
     animation: none;
   }
 
@@ -872,7 +1060,12 @@
   .project-card:hover,
   .skill-item:hover .skill-progress-bar,
   .tech-logo:hover,
-  .carousel-button:hover {
+  .carousel-button:hover,
+  .hero-img:hover,
+  .hero-particles .bracket:hover,
+  .hero-particles .tech-icon:hover,
+  .project-count-btn:hover,
+  .project-count-bubble:hover {
     transform: none;
     box-shadow: none;
   }
