@@ -65,7 +65,7 @@ const Projects = () => {
       github: 'https://github.com/AshenRuvinda/portfolio_react',
     },
     {
-      title: 'Project HillTop-E Commerce Website (ongoing-project)',
+      title: 'Project HillTop-E Commerce Web (ongoing-project)',
       description: '',
       extendedDescription: 'Redesigning HillTop Clothing’s website with React to improve UI/UX, performance, and support future e-commerce growth and scalability.',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphzn-B0t2cQzZgAvA2FXZkhTEkayMw26UqA&s',
