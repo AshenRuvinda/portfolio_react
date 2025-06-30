@@ -7,7 +7,7 @@
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
     margin: 0;
-    background: #0f172a; /* Softer dark slate for user-friendly UI */
+    background: #0f172a;
     color: #fff;
   }
 
@@ -25,13 +25,13 @@
 
 /* Footer-specific styles */
 .footer {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); /* Updated to match #0f172a */
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
   backdrop-filter: blur(15px);
   padding: 60px 0;
 }
 
 .footer-logo span {
-  color: #60a5fa; /* Soft blue */
+  color: #60a5fa;
 }
 
 .footer-text {
@@ -43,7 +43,7 @@
 }
 
 .footer-social a:hover {
-  color: #3b82f6; /* Vibrant blue hover */
+  color: #3b82f6;
 }
 
 .footer-links h4 {
@@ -104,7 +104,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6); /* Subtler overlay */
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
   transition: all 0.5s ease;
 }
@@ -124,7 +124,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(30, 64, 175, 0.3)); /* Updated colors */
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(30, 64, 175, 0.3));
   animation: gradientShift 10s ease infinite;
 }
 
@@ -136,7 +136,7 @@
 
 .hero-particles .particle, .about-particles .particle {
   position: absolute;
-  background: rgba(96, 165, 250, 0.3); /* Soft blue */
+  background: rgba(96, 165, 250, 0.3);
   border-radius: 50%;
   animation: float 10s infinite ease-in-out;
 }
@@ -169,7 +169,7 @@
 
 .hero-particles .bracket, .about-particles .bracket {
   position: absolute;
-  color: rgba(96, 165, 250, 0.2); /* Soft blue */
+  color: rgba(96, 165, 250, 0.2);
   font-family: 'Courier New', monospace;
   font-size: 2.5rem;
   font-weight: bold;
@@ -310,7 +310,7 @@
 
 .card {
   background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(96, 165, 250, 0.3); /* Soft blue border */
+  border: 2px solid rgba(96, 165, 250, 0.3);
   border-radius: 12px;
   padding: 16px;
   backdrop-filter: blur(15px);
@@ -361,7 +361,7 @@
 }
 
 .resume-item {
-  border: 2px solid rgba(96, 165, 250, 0.3); /* Soft blue border */
+  border: 2px solid rgba(96, 165, 250, 0.3);
 }
 
 .resume-year {
@@ -370,7 +370,7 @@
 }
 
 .contact-info-item {
-  border: none; /* Remove gradient border for clean look */
+  border: none;
 }
 
 .contact-info-icon {
@@ -379,7 +379,7 @@
 
 .contact-info-content h4 {
   margin-bottom: 4px;
-  color: #60a5fa; /* Soft blue */
+  color: #60a5fa;
 }
 
 .contact-info-content a {
@@ -388,7 +388,7 @@
 }
 
 .contact-info-content a:hover {
-  color: #3b82f6; /* Vibrant blue hover */
+  color: #3b82f6;
 }
 
 .contact-form input,
@@ -471,16 +471,47 @@
   color: #3b82f6;
 }
 
+.skill-category {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(96, 165, 250, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-4px);
+}
+
+.skill-item {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
 .skill-progress {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  height: 8px;
+  background: #1e293b;
+  border-radius: 9999px;
+  height: 0.5rem;
   overflow: hidden;
 }
 
 .skill-progress-bar {
-  background: #60a5fa;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
   height: 100%;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.skill-item:hover .skill-progress-bar {
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.5);
 }
 
 .project-tag {
@@ -586,6 +617,18 @@
     padding: 10px 20px;
     font-size: 0.85rem;
   }
+
+  .skill-category {
+    padding: 1rem;
+  }
+
+  .skill-progress {
+    height: 0.4rem;
+  }
+
+  .skill-item {
+    margin-bottom: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -672,8 +715,12 @@
     padding: 8px;
   }
 
+  .skill-category {
+    padding: 0.75rem;
+  }
+
   .skill-progress {
-    height: 6px;
+    height: 0.3rem;
   }
 }
 
@@ -692,7 +739,9 @@
   .footer-social a,
   .footer-links a,
   .footer-email,
-  .back-to-top {
+  .back-to-top,
+  .skill-category,
+  .skill-progress-bar {
     transition: none;
   }
 
@@ -701,5 +750,11 @@
   .hero-particles .bracket, .about-particles .bracket,
   .hero-particles .tech-icon, .about-particles .tech-icon {
     animation: none;
+  }
+
+  .skill-category:hover,
+  .skill-item:hover .skill-progress-bar {
+    transform: none;
+    box-shadow: none;
   }
 }
