@@ -1,653 +1,673 @@
-html {
-    scroll-behavior: smooth;
-}
+/* src/styles/App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    margin: 0;
+@layer base {
+  html, body, #root, .app {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: smooth;
+    margin: 0;
     background: url('https://images.unsplash.com/photo-1557683316-973673baf926') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
-}
+  }
 
-.app {
-    position: relative;
-}
-
-h1, h2, h3, h4 {
+  /* Apply Poppins to all text elements, except headings */
+  h1, h2, h3, h4 {
     font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
-}
+  }
 
-p, li, a, button, input, textarea, span {
+  p, li, a, button, input, textarea, span {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
+  }
 }
 
-.section {
-    min-height: 100vh;
-    padding: 80px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(15px);
-    transition: all 0.5s ease;
-}
-
-.section:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.hero-section, .about-section {
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-gradient, .about-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(45, 212, 191, 0.3), rgba(30, 58, 138, 0.3));
-    animation: gradientShift 10s ease infinite;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.hero-particles .particle, .about-particles .particle {
-    position: absolute;
-    background: rgba(45, 212, 191, 0.3);
-    border-radius: 50%;
-    animation: float 10s infinite ease-in-out;
-}
-
-.hero-particles .particle-1, .about-particles .particle-1 {
-    width: 26px;
-    height: 26px;
-    top: 10%;
-    left: 15%;
-    animation-name: float-1;
-}
-
-.hero-particles .particle-2, .about-particles .particle-2 {
-    width: 20px;
-    height: 20px;
-    top: 55%;
-    left: 75%;
-    animation-name: float-2;
-    animation-delay: 2s;
-}
-
-.hero-particles .particle-3, .about-particles .particle-3 {
-    width: 32px;
-    height: 32px;
-    top: 75%;
-    left: 25%;
-    animation-name: float-3;
-    animation-delay: 4s;
-}
-
-.hero-particles .bracket, .about-particles .bracket {
-    position: absolute;
-    color: rgba(45, 212, 191, 0.2);
-    font-family: 'Courier New', monospace;
-    font-size: 2.5rem;
-    font-weight: bold;
-    pointer-events: none;
-}
-
-.hero-particles .tech-icon, .about-particles .tech-icon {
-    position: absolute;
-    color: rgba(45, 212, 191, 0.25);
-    font-size: 2.5rem;
-    pointer-events: none;
-}
-
-.bracket-1 {
-    top: 5%;
-    left: 10%;
-    animation: floatBracket-1 12s infinite ease-in-out;
-}
-
-.bracket-2 {
-    top: 20%;
-    left: 80%;
-    animation: floatBracket-2 12s infinite ease-in-out 1s;
-}
-
-.bracket-3 {
-    top: 40%;
-    left: 20%;
-    animation: floatBracket-3 12s infinite ease-in-out 2s;
-}
-
-.bracket-4 {
-    top: 60%;
-    left: 70%;
-    animation: floatBracket-4 12s infinite ease-in-out 3s;
-}
-
-.bracket-5 {
-    top: 30%;
-    left: 50%;
-    animation: floatBracket-5 12s infinite ease-in-out 4s;
-}
-
-.bracket-6 {
-    top: 80%;
-    left: 15%;
-    animation: floatBracket-6 12s infinite ease-in-out 5s;
-}
-
-.tech-icon-1 {
-    top: 15%;
-    left: 30%;
-    animation: floatBracket-1 12s infinite ease-in-out 6s;
-}
-
-.tech-icon-2 {
-    top: 25%;
-    left: 65%;
-    animation: floatBracket-2 12s infinite ease-in-out 7s;
-}
-
-.tech-icon-3 {
-    top: 45%;
-    left: 35%;
-    animation: floatBracket-3 12s infinite ease-in-out 8s;
-}
-
-.tech-icon-4 {
-    top: 65%;
-    left: 60%;
-    animation: floatBracket-4 12s infinite ease-in-out 9s;
-}
-
-.tech-icon-5 {
-    top: 35%;
-    left: 85%;
-    animation: floatBracket-5 12s infinite ease-in-out 10s;
-}
-
-@keyframes float-1 {
-    0% { transform: translate(0, 0); opacity: 0.3; }
-    50% { transform: translate(20px, -20px); opacity: 0.6; }
-    100% { transform: translate(0, 0); opacity: 0.3; }
-}
-
-@keyframes float-2 {
-    0% { transform: translate(0, 0); opacity: 0.3; }
-    50% { transform: translate(-15px, 25px); opacity: 0.6; }
-    100% { transform: translate(0, 0); opacity: 0.3; }
-}
-
-@keyframes float-3 {
-    0% { transform: translate(0, 0); opacity: 0.3; }
-    50% { transform: translate(25px, 15px); opacity: 0.6; }
-    100% { transform: translate(0, 0); opacity: 0.3; }
-}
-
-@keyframes floatBracket-1 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(30px, -30px) rotate(15deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes floatBracket-2 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(-20px, 20px) rotate(-10deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes floatBracket-3 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(25px, -15px) rotate(20deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes floatBracket-4 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(-15px, -25px) rotate(-15deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes floatBracket-5 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(20px, 25px) rotate(10deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes floatBracket-6 {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-    50% { transform: translate(-25px, 15px) rotate(-20deg); opacity: 0.5; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
-}
-
-@keyframes spin-slow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid transparent;
-    background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
-    border-radius: 12px;
-    padding: 16px;
-    backdrop-filter: blur(15px);
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-}
-
-.navbar {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(15px);
-}
-
+/* Footer-specific styles */
 .footer {
-    background: linear-gradient(180deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
-    backdrop-filter: blur(15px);
-    padding: 60px 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
+  backdrop-filter: blur(15px);
+  padding: 60px 0;
 }
 
 .footer-logo span {
-    color: #2dd4bf;
+  color: #2dd4bf;
 }
 
 .footer-text {
-    color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-social a {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
-    color: #2dd4bf;
-    transform: scale(1.2) rotate(5deg);
+  color: #2dd4bf;
 }
 
 .footer-links h4 {
-    color: #fff;
+  color: #fff;
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #2dd4bf;
+  color: #2dd4bf;
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 20px;
 }
 
 .back-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
 }
 
 .back-to-top a:hover {
-    color: #2dd4bf;
+  color: #2dd4bf;
 }
 
 .footer-tech-stack .icon {
-    color: #2dd4bf;
+  color: #2dd4bf;
 }
 
 .footer-newsletter input {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-newsletter input:focus {
-    border-color: #2dd4bf;
-    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+}
+
+/* New styles for enhanced footer */
+.footer-email {
+  transition: all 0.3s ease;
+}
+
+.footer-email:hover {
+  color: #2dd4bf;
+}
+
+/* Rest of your existing styles */
+.section {
+  min-height: 100vh;
+  padding: 80px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15px);
+  transition: all 0.5s ease;
+}
+
+.section:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero-section, .about-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-gradient, .about-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.3), rgba(30, 58, 138, 0.3));
+  animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-particles .particle, .about-particles .particle {
+  position: absolute;
+  background: rgba(45, 212, 191, 0.3);
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+.hero-particles .particle-1, .about-particles .particle-1 {
+  width: 26px;
+  height: 26px;
+  top: 10%;
+  left: 15%;
+  animation-name: float-1;
+}
+
+.hero-particles .particle-2, .about-particles .particle-2 {
+  width: 20px;
+  height: 20px;
+  top: 55%;
+  left: 75%;
+  animation-name: float-2;
+  animation-delay: 2s;
+}
+
+.hero-particles .particle-3, .about-particles .particle-3 {
+  width: 32px;
+  height: 32px;
+  top: 75%;
+  left: 25%;
+  animation-name: float-3;
+  animation-delay: 4s;
+}
+
+.hero-particles .bracket, .about-particles .bracket {
+  position: absolute;
+  color: rgba(45, 212, 191, 0.2);
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.hero-particles .tech-icon, .about-particles .tech-icon {
+  position: absolute;
+  color: rgba(45, 212, 191, 0.25);
+  font-size: 2.5rem;
+  pointer-events: none;
+}
+
+.bracket-1 {
+  top: 5%;
+  left: 10%;
+  animation: floatBracket-1 12s infinite ease-in-out;
+}
+
+.bracket-2 {
+  top: 20%;
+  left: 80%;
+  animation: floatBracket-2 12s infinite ease-in-out 1s;
+}
+
+.bracket-3 {
+  top: 40%;
+  left: 20%;
+  animation: floatBracket-3 12s infinite ease-in-out 2s;
+}
+
+.bracket-4 {
+  top: 60%;
+  left: 70%;
+  animation: floatBracket-4 12s infinite ease-in-out 3s;
+}
+
+.bracket-5 {
+  top: 30%;
+  left: 50%;
+  animation: floatBracket-5 12s infinite ease-in-out 4s;
+}
+
+.bracket-6 {
+  top: 80%;
+  left: 15%;
+  animation: floatBracket-6 12s infinite ease-in-out 5s;
+}
+
+.tech-icon-1 {
+  top: 15%;
+  left: 30%;
+  animation: floatBracket-1 12s infinite ease-in-out 6s;
+}
+
+.tech-icon-2 {
+  top: 25%;
+  left: 65%;
+  animation: floatBracket-2 12s infinite ease-in-out 7s;
+}
+
+.tech-icon-3 {
+  top: 45%;
+  left: 35%;
+  animation: floatBracket-3 12s infinite ease-in-out 8s;
+}
+
+.tech-icon-4 {
+  top: 65%;
+  left: 60%;
+  animation: floatBracket-4 12s infinite ease-in-out 9s;
+}
+
+.tech-icon-5 {
+  top: 35%;
+  left: 85%;
+  animation: floatBracket-5 12s infinite ease-in-out 10s;
+}
+
+@keyframes float-1 {
+  0% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(20px, -20px); opacity: 0.6; }
+  100% { transform: translate(0, 0); opacity: 0.3; }
+}
+
+@keyframes float-2 {
+  0% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(-15px, 25px); opacity: 0.6; }
+  100% { transform: translate(0, 0); opacity: 0.3; }
+}
+
+@keyframes float-3 {
+  0% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(25px, 15px); opacity: 0.6; }
+  100% { transform: translate(0, 0); opacity: 0.3; }
+}
+
+@keyframes floatBracket-1 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(30px, -30px) rotate(15deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes floatBracket-2 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(-20px, 20px) rotate(-10deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes floatBracket-3 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(25px, -15px) rotate(20deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes floatBracket-4 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(-15px, -25px) rotate(-15deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes floatBracket-5 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(20px, 25px) rotate(10deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes floatBracket-6 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+  50% { transform: translate(-25px, 15px) rotate(-20deg); opacity: 0.5; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(15px);
 }
 
 .project-card {
-    min-height: 400px;
-    perspective: 1000px;
+  min-height: 400px;
+  perspective: 1000px;
 }
 
 .project-item {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .front, .back {
-    backface-visibility: hidden;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .back {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .project-img img {
-    width: 100%;
-    height: 192px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: 192px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .resume-item {
-    border: 2px solid transparent;
-    background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
+  border: 2px solid transparent;
+  background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
 }
 
 .resume-year {
-    font-size: 0.9rem;
-    font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .contact-info-item {
-    border: 2px solid transparent;
-    background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
+  border: 2px solid transparent;
+  background: linear-gradient(to right, #2dd4bf, #1e3a8a) padding-box, linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)) border-box;
 }
 
 .contact-info-icon {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .contact-info-content h4 {
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .contact-form input,
 .contact-form textarea {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    margin-bottom: 12px;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    transition: border-color 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition: border-color 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    outline: none;
-    border-color: #2dd4bf;
+  outline: none;
+  border-color: #2dd4bf;
 }
 
 .contact-form button {
-    background: linear-gradient(90deg, #2dd4bf, #1e3a8a);
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
+  background: linear-gradient(90deg, #2dd4bf, #1e3a8a);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
 }
 
 .contact-form button:hover {
-    background: linear-gradient(90deg, #26a69a, #1c2a44);
+  background: linear-gradient(90deg, #26a69a, #1c2a44);
 }
 
 .form-message {
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
 }
 
 .btn {
-    padding: 12px 24px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
 }
 
 .btn-primary {
-    background: #2dd4bf;
-    color: #fff;
+  background: #2dd4bf;
+  color: #fff;
 }
 
 .btn-primary:hover {
-    background: #26a69a;
-    transform: scale(1.05);
+  background: #26a69a;
+  transform: scale(1.05);
 }
 
 .btn-outline {
-    border: 2px solid #2dd4bf;
-    color: #2dd4bf;
-    background: transparent;
+  border: 2px solid #2dd4bf;
+  color: #2dd4bf;
+  background: transparent;
 }
 
 .btn-outline:hover {
-    background: #2dd4bf;
-    color: #fff;
-    transform: scale(1.05);
+  background: #2dd4bf;
+  color: #fff;
+  transform: scale(1.05);
 }
 
 .icon {
-    transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .icon:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .skill-progress {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    height: 8px;
-    overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  height: 8px;
+  overflow: hidden;
 }
 
 .skill-progress-bar {
-    background: #2dd4bf;
-    height: 100%;
+  background: #2dd4bf;
+  height: 100%;
 }
 
 .project-tag {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .project-tag:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
-    .section {
-        padding: 60px 12px;
-        min-height: auto;
-    }
+  .section {
+    padding: 60px 12px;
+    min-height: auto;
+  }
 
-    h1 {
-        font-size: 2rem;
-    }
+  h1 {
+    font-size: 2rem;
+  }
 
-    h2 {
-        font-size: 1.75rem;
-    }
+  h2 {
+    font-size: 1.75rem;
+  }
 
-    h3 {
-        font-size: 1.5rem;
-    }
+  h3 {
+    font-size: 1.5rem;
+  }
 
-    h4 {
-        font-size: 1.25rem;
-    }
+  h4 {
+    font-size: 1.25rem;
+  }
 
-    .hero-particles .bracket, .about-particles .bracket,
-    .hero-particles .tech-icon, .about-particles .tech-icon {
-        font-size: 1.8rem;
-        display: none; /* Hide decorative elements on smaller screens */
-    }
+  .hero-particles .bracket, .about-particles .bracket,
+  .hero-particles .tech-icon, .about-particles .tech-icon {
+    font-size: 1.8rem;
+    display: none;
+  }
 
-    .hero-particles .particle-1, .about-particles .particle-1 {
-        width: 20px;
-        height: 20px;
-    }
+  .hero-particles .particle-1, .about-particles .particle-1 {
+    width: 20px;
+    height: 20px;
+  }
 
-    .hero-particles .particle-2, .about-particles .particle-2 {
-        width: 15px;
-        height: 15px;
-    }
+  .hero-particles .particle-2, .about-particles .particle-2 {
+    width: 15px;
+    height: 15px;
+  }
 
-    .hero-particles .particle-3, .about-particles .particle-3 {
-        width: 24px;
-        height: 24px;
-    }
+  .hero-particles .particle-3, .about-particles .particle-3 {
+    width: 24px;
+    height: 24px;
+  }
 
-    .card {
-        padding: 12px;
-    }
+  .card {
+    padding: 12px;
+  }
 
-    .project-card {
-        min-height: 320px;
-    }
+  .project-card {
+    min-height: 320px;
+  }
 
-    .project-img img {
-        height: 140px;
-    }
+  .project-img img {
+    height: 140px;
+  }
 
-    .project-content p, .back p {
-        font-size: 0.85rem;
-    }
+  .project-content p, .back p {
+    font-size: 0.85rem;
+  }
 
-    .btn {
-        padding: 10px 18px;
-        font-size: 0.85rem;
-    }
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
 
-    .navbar {
-        padding: 12px;
-    }
+  .navbar {
+    padding: 12px;
+  }
 
-    .footer {
-        padding: 40px 12px;
-    }
+  .footer {
+    padding: 40px 12px;
+  }
 
-    .footer-about, .footer-links, .footer-tech-stack, .footer-newsletter {
-        margin-bottom: 20px;
-    }
+  .footer-about, .footer-links, .footer-tech-stack, .footer-newsletter {
+    margin-bottom: 24px;
+  }
 
-    .footer-text, .footer-links a, .footer-tech-stack span {
-        font-size: 0.85rem;
-    }
+  .footer-text, .footer-links a, .footer-tech-stack span, .footer-email {
+    font-size: 0.85rem;
+  }
 
-    .contact-form input,
-    .contact-form textarea {
-        padding: 10px;
-        font-size: 0.85rem;
-    }
+  .footer-social a {
+    font-size: 1.5rem;
+  }
 
-    .contact-form button {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .contact-form button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .section {
-        padding: 40px 10px;
-    }
+  .section {
+    padding: 40px 10px;
+  }
 
-    h1 {
-        font-size: 1.75rem;
-    }
+  h1 {
+    font-size: 1.75rem;
+  }
 
-    h2 {
-        font-size: 1.5rem;
-    }
+  h2 {
+    font-size: 1.5rem;
+  }
 
-    h3 {
-        font-size: 1.25rem;
-    }
+  h3 {
+    font-size: 1.25rem;
+  }
 
-    h4 {
-        font-size: 1rem;
-    }
+  h4 {
+    font-size: 1rem;
+  }
 
-    p, li, a, button, input, textarea, span {
-        font-size: 0.8rem;
-    }
+  p, li, a, button, input, textarea, span {
+    font-size: 0.8rem;
+  }
 
-    .card {
-        padding: 10px;
-        border-radius: 8px;
-    }
+  .card {
+    padding: 10px;
+    border-radius: 8px;
+  }
 
-    .project-card {
-        min-height: 280px;
-    }
+  .project-card {
+    min-height: 280px;
+  }
 
-    .project-img img {
-        height: 120px;
-    }
+  .project-img img {
+    height: 120px;
+  }
 
-    .project-content p, .back p {
-        font-size: 0.8rem;
-    }
+  .project-content p, .back p {
+    font-size: 0.8rem;
+  }
 
-    .btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-    }
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
 
-    .navbar {
-        padding: 10px;
-    }
+  .navbar {
+    padding: 10px;
+  }
 
-    .footer {
-        padding: 30px 10px;
-    }
+  .footer {
+    padding: 30px 10px;
+  }
 
-    .footer-about, .footer-links, .footer-tech-stack, .footer-newsletter {
-        margin-bottom: 16px;
-    }
+  .footer-about, .footer-links, .footer-tech-stack, .footer-newsletter {
+    margin-bottom: 20px;
+  }
 
-    .footer-text, .footer-links a, .footer-tech-stack span {
-        font-size: 0.8rem;
-    }
+  .footer-text, .footer-links a, .footer-tech-stack span, .footer-email {
+    font-size: 0.8rem;
+  }
 
-    .contact-form input,
-    .contact-form textarea {
-        padding: 8px;
-        font-size: 0.8rem;
-    }
+  .footer-social a {
+    font-size: 1.25rem;
+  }
 
-    .contact-form button {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-    }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
 
-    .back-to-top {
-        bottom: 12px;
-        right: 12px;
-        padding: 6px;
-    }
+  .contact-form button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
 
-    .skill-progress {
-        height: 6px;
-    }
+  .back-to-top {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px;
+  }
+
+  .skill-progress {
+    height: 6px;
+  }
 }

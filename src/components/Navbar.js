@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 navbar py-4">
       <div className="container mx-auto flex justify-between items-center px-4">
         <h1 className="text-2xl font-bold flex items-center">
-          <i className="fas fa-code mr-2"></i> Ashen's Portfolio
+          <i className="fas fa-code mr-2"></i> Ashen Ruvinda
         </h1>
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">

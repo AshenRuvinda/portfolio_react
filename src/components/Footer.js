@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
+import BackToTop from './BackToTop';
 
 const Footer = () => {
+  const [formStatus, setFormStatus] = useState({ message: '', type: '' });
+  const [isVisible, setIsVisible] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -38,11 +42,36 @@ const Footer = () => {
     { name: 'JavaScript', icon: 'fab fa-js' },
   ];
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
-    // Add newsletter subscription logic here
-    alert('Thank you for subscribing!');
+    setFormStatus({ message: 'Subscribing...', type: 'loading' });
+
+    // Simulate API call for newsletter subscription
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock delay
+      setFormStatus({ message: 'Thank you for subscribing!', type: 'success' });
+      e.target.reset();
+    } catch (error) {
+      setFormStatus({ message: 'Subscription failed. Please try again.', type: 'error' });
+    }
+
+    // Clear message after 3 seconds
+    setTimeout(() => setFormStatus({ message: '', type: '' }), 3000);
   };
+
+  // Toggle BackToTop visibility based on scroll position
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   return (
     <footer className="footer bg-gray-900 text-white py-12">
@@ -55,11 +84,17 @@ const Footer = () => {
         >
           {/* About Section */}
           <motion.div className="footer-about" variants={itemVariants}>
-            <a href="#" className="footer-logo text-3xl font-bold mb-4 flex items-center gap-2">
-              <span className="text-teal-400">[ </span>
+            <motion.a
+              href="#"
+              className="footer-logo text-3xl font-bold mb-4 flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Ashen Ruvinda Portfolio"
+            >
+              <span className="text-teal-400">&lt;</span>
               AshenRuvinda
-              <span className="text-teal-400"> ]</span>
-            </a>
+              <span className="text-teal-400">&gt;</span>
+            </motion.a>
             <p className="footer-text text-gray-300 text-sm mb-6">
               Crafting innovative software solutions with passion and precision. Specializing in full-stack development and cutting-edge technologies.
             </p>
@@ -71,14 +106,27 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-teal-400 transition-all duration-300"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileHover={{ scale: 1.3, rotate: 10 }}
                   whileTap={{ scale: 0.9 }}
                   title={link.label}
+                  aria-label={`Visit my ${link.label}`}
                 >
                   <i className={`${link.icon} text-2xl`}></i>
                 </motion.a>
               ))}
             </div>
+            <motion.p
+              className="mt-4 text-sm text-gray-300"
+              variants={itemVariants}
+            >
+              <a
+                href="mailto:your.email@example.com"
+                className="hover:text-teal-400 transition-colors duration-300"
+                aria-label="Email Ashen Ruvinda"
+              >
+                maaruvinda@students.nsbm.ac.lk
+              </a>
+            </motion.p>
           </motion.div>
 
           {/* Quick Links */}
@@ -96,6 +144,7 @@ const Footer = () => {
                     smooth={true}
                     duration={500}
                     className="text-gray-300 text-sm hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                    aria-label={`Navigate to ${link.name} section`}
                   >
                     {link.name}
                   </Link>
@@ -129,20 +178,37 @@ const Footer = () => {
               Subscribe to get updates on my latest projects and tech insights.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
+              <label htmlFor="email-input" className="sr-only">
+                Email address
+              </label>
               <input
+                id="email-input"
                 type="email"
                 placeholder="Enter your email"
                 className="bg-gray-800 text-white border border-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:border-teal-400 transition-colors duration-300"
                 required
+                aria-required="true"
               />
               <motion.button
                 type="submit"
-                className="bg-teal-400 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-teal-300 transition-all duration-300"
+                className="bg-teal-400 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-teal-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                disabled={formStatus.type === 'loading'}
+                aria-label="Subscribe to newsletter"
               >
-                Subscribe
+                {formStatus.type === 'loading' ? 'Subscribing...' : 'Subscribe'}
               </motion.button>
+              {formStatus.message && (
+                <p
+                  className={`text-sm mt-2 text-center ${
+                    formStatus.type === 'success' ? 'text-teal-400' : 'text-red-400'
+                  }`}
+                  role="status"
+                >
+                  {formStatus.message}
+                </p>
+              )}
             </form>
           </motion.div>
         </motion.div>
@@ -150,27 +216,13 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="footer-bottom text-center mt-12 pt-6 border-t border-gray-800">
           <p className="text-sm text-gray-400">
-            © 2025 AshenRuvinda. Built with <span className="text-teal-400">code</span> and{' '}
-            <span className="text-red-400">♥</span>.
+            © 2025 AshenRuvinda. Built with{' '}
+            <span className="text-teal-400">ReactJS</span>.
           </p>
         </div>
 
-        {/* Back to Top */}
-        <motion.div
-          className="back-to-top fixed bottom-8 right-8 bg-gray-800 p-3 rounded-full shadow-lg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            to="hero"
-            smooth={true}
-            duration={500}
-            className="text-teal-400 text-xl hover:text-teal-300 transition-colors duration-300"
-          >
-            <i className="fas fa-arrow-up"></i>
-          </Link>
-        </motion.div>
+        {/* Back to Top Button */}
+        {isVisible && <BackToTop />}
       </div>
     </footer>
   );
