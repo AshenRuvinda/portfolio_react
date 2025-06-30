@@ -44,7 +44,7 @@ const Home = () => {
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Mock delay
-      setProjectCount(7); // Mock project count
+      setProjectCount(5); // Mock project count
     } catch (error) {
       console.error('Error fetching project count:', error);
       setProjectCount(0);
