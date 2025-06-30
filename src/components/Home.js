@@ -15,8 +15,8 @@ const Home = () => {
   };
 
   const bubbleVariants = {
-    hidden: { opacity: 0, scale: 0.5, x: 10 },
-    visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+    hidden: { opacity: 0, scale: 0.5, y: 10 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
   };
 
   const socialLinks = [
@@ -107,7 +107,7 @@ const Home = () => {
       </motion.button>
       {projectCount !== null && (
         <motion.div
-          className="project-count-bubble absolute bottom-5 right-17"
+          className="project-count-bubble absolute bottom-16 right-5"
           variants={bubbleVariants}
           initial="hidden"
           animate="visible"
