@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import SplashScreen from './components/SplashScreen';
+import Home from './components/Home';
+import About from './components/About';
+import Skills from './components/Skills';
+import Services from './components/Services';
+import Projects from './components/Projects';
+import Resume from './components/Resume';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import './styles/App.css';
 
-function App() {
+const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+      <Navbar />
+      <Home />
+      <About />
+      <Skills />
+      <Services />
+      <Projects />
+      <Resume />
+      <Contact />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
