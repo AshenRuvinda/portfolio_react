@@ -56,6 +56,23 @@ const Projects = () => {
       tags: ['Python', 'SQL'],
       github: 'https://github.com/AshenRuvinda/Cardamom_Management_System',
     },
+    {
+      title: 'Personal Portfolio-React',
+      description: '',
+      extendedDescription: 'A portfolio website built with React JS showcases personal projects, skills, and achievements through dynamic, responsive components. It offers smooth navigation, fast loading, and modular design, enabling easy updates and a professional online presence for developers, designers, or creatives.',
+      image: 'https://github.com/AshenRuvinda/ProjectImages/blob/master/Reactportfolio.png?raw=true',
+      tags: ['React'],
+      github: 'https://github.com/AshenRuvinda/portfolio_react',
+    },
+    {
+      title: 'Project HillTop-E Commerce Website (ongoing-project)',
+      description: '',
+      extendedDescription: 'Redesigning HillTop Clothing’s website using React for better performance, modern UI/UX, and mobile responsiveness. The project aims to enhance user experience and support future e-commerce features.',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphzn-B0t2cQzZgAvA2FXZkhTEkayMw26UqA&s',
+      tags: ['React','MongoDB'],
+      github: 'https://github.com/AshenRuvinda/Project-HillTop',
+      website: 'https://project-hill-top.vercel.app/',
+    },
   ];
 
   const getTagColor = (tag) => {
@@ -64,7 +81,7 @@ const Projects = () => {
       Firebase: 'bg-orange-500 text-orange-100',
       'Weather API': 'bg-green-500 text-green-100',
       Python: 'bg-yellow-500 text-yellow-100',
-      React: 'bg-cyan-500 text-cyan-100',
+      React: 'bg-emerald-500 text-emerald-100',
       SQL: 'bg-purple-500 text-purple-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';

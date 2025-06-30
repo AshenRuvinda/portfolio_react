@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ReactTyped } from 'react-typed';
+import '../styles/App.css';
 
 const Contact = () => {
   const [formStatus, setFormStatus] = useState(null);
@@ -51,7 +52,7 @@ const Contact = () => {
             typeSpeed={50}
             backSpeed={30}
             loop
-            className="text-lg text-teal-400"
+            className="text-lg text-blue-400"
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -62,13 +63,15 @@ const Contact = () => {
             animate="visible"
           >
             <motion.div
-              className="contact-info-item card p-4 mb-4 flex items-start"
+              className="contact-info-item mb-6 flex items-center"
               variants={itemVariants}
+              transition={{ delay: 0.1 }}
             >
               <div className="contact-info-icon mr-4">
                 <motion.i
-                  className="fas fa-map-marker-alt text-teal-400 text-2xl"
-                  whileHover={{ scale: 1.2, color: '#1e3a8a' }}
+                  className="fas fa-map-marker-alt text-blue-400 text-2xl"
+                  whileHover={{ scale: 1.2, color: '#3b82f6' }}
+                  aria-label="Location"
                 ></motion.i>
               </div>
               <div className="contact-info-content">
@@ -77,13 +80,15 @@ const Contact = () => {
               </div>
             </motion.div>
             <motion.div
-              className="contact-info-item card p-4 mb-4 flex items-start"
+              className="contact-info-item mb-6 flex items-center"
               variants={itemVariants}
+              transition={{ delay: 0.2 }}
             >
               <div className="contact-info-icon mr-4">
                 <motion.i
-                  className="fas fa-envelope text-teal-400 text-2xl"
-                  whileHover={{ scale: 1.2, color: '#1e3a8a' }}
+                  className="fas fa-envelope text-blue-400 text-2xl"
+                  whileHover={{ scale: 1.2, color: '#3b82f6' }}
+                  aria-label="Email"
                 ></motion.i>
               </div>
               <div className="contact-info-content">
@@ -94,13 +99,15 @@ const Contact = () => {
               </div>
             </motion.div>
             <motion.div
-              className="contact-info-item card p-4 mb-4 flex items-start"
+              className="contact-info-item mb-6 flex items-center"
               variants={itemVariants}
+              transition={{ delay: 0.3 }}
             >
               <div className="contact-info-icon mr-4">
                 <motion.i
-                  className="fas fa-phone text-teal-400 text-2xl"
-                  whileHover={{ scale: 1.2, color: '#1e3a8a' }}
+                  className="fas fa-phone text-blue-400 text-2xl"
+                  whileHover={{ scale: 1.2, color: '#3b82f6' }}
+                  aria-label="Phone"
                 ></motion.i>
               </div>
               <div className="contact-info-content">
@@ -111,13 +118,15 @@ const Contact = () => {
               </div>
             </motion.div>
             <motion.div
-              className="contact-info-item card p-4 mb-4 flex items-start"
+              className="contact-info-item mb-6 flex items-center"
               variants={itemVariants}
+              transition={{ delay: 0.4 }}
             >
               <div className="contact-info-icon mr-4">
                 <motion.i
-                  className="fas fa-clock text-teal-400 text-2xl"
-                  whileHover={{ scale: 1.2, color: '#1e3a8a' }}
+                  className="fas fa-clock text-blue-400 text-2xl"
+                  whileHover={{ scale: 1.2, color: '#3b82f6' }}
+                  aria-label="Working Hours"
                 ></motion.i>
               </div>
               <div className="contact-info-content">
@@ -169,7 +178,7 @@ const Contact = () => {
               </div>
               {formStatus === 'success' && (
                 <motion.div
-                  className="form-message text-green-400 mb-4"
+                  className="form-message text-emerald-400 mb-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
@@ -179,7 +188,7 @@ const Contact = () => {
               )}
               {formStatus === 'error' && (
                 <motion.div
-                  className="form-message text-red-400 mb-4"
+                  className="form-message text-red-500 mb-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
