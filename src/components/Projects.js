@@ -61,7 +61,7 @@ const Projects = () => {
     {
       title: 'Personal Portfolio-React',
       description: '',
-      extendedDescription: 'A portfolio website built with React JS showcases personal projects, skills, and achievements through dynamic, responsive components. It offers smooth navigation, fast loading, and modular design, enabling easy updates and a professional online presence for developers, designers, or creatives.',
+      extendedDescription: 'A React JS portfolio website displays projects, skills, and achievements with dynamic, responsive components, offering smooth navigation, fast loading, and a professional online presence.',
       image: 'https://github.com/AshenRuvinda/ProjectImages/blob/master/Reactportfolio.png?raw=true',
       tags: ['React'],
       github: 'https://github.com/AshenRuvinda/portfolio_react',

@@ -19,7 +19,7 @@
   }
 
   p, li, a, button, input, textarea, span {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', RRoboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
   }
 
@@ -772,16 +772,31 @@
   }
 
   .project-card {
-    min-height: 320px;
-    width: 240px;
+    min-height: 360px;
+    width: 260px;
+    padding: 1rem;
   }
 
   .project-img img {
-    height: 140px;
+    height: 160px;
+  }
+
+  .project-content h3, .back h3 {
+    font-size: 1.125rem;
   }
 
   .project-content p, .back p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .project-tags {
+    gap: 1.5;
+  }
+
+  .project-tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
   }
 
   .btn {
@@ -945,16 +960,31 @@
   }
 
   .project-card {
-    min-height: 280px;
-    width: 200px;
+    min-height: 340px;
+    width: 240px;
+    padding: 0.75rem;
   }
 
   .project-img img {
-    height: 120px;
+    height: 140px;
+  }
+
+  .project-content h3, .back h3 {
+    font-size: 1rem;
   }
 
   .project-content p, .back p {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .project-tags {
+    gap: 1;
+  }
+
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 3px 6px;
   }
 
   .btn {
