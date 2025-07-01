@@ -46,7 +46,6 @@ const Services = () => {
   const totalSlides = services.length;
 
   const goToSlide = (slideIndex) => {
-    // Allow infinite scrolling by wrapping around
     let newSlide = slideIndex;
     if (slideIndex < 0) {
       newSlide = totalSlides - 1;
@@ -60,6 +59,7 @@ const Services = () => {
       const cardWidth = 340;
       const gap = 30;
       const offset = newSlide * (cardWidth + gap);
+      trackRef.current.style.transition = 'transform 0.3s ease';
       trackRef.current.style.transform = `translateX(-${offset}px)`;
     }
   };
@@ -87,7 +87,10 @@ const Services = () => {
     setIsDragging(true);
     const x = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
     setStartX(x);
-    setScrollLeft(currentSlide);
+    setScrollLeft(trackRef.current ? trackRef.current.scrollLeft : 0);
+    if (trackRef.current) {
+      trackRef.current.style.transition = 'none';
+    }
   };
 
   const handleMove = (e) => {
@@ -95,22 +98,28 @@ const Services = () => {
     e.preventDefault();
     
     const x = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-    const diff = startX - x;
-    const threshold = 100;
-    
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        nextSlide(); // Swipe left - go to next
-        setIsDragging(false);
-      } else {
-        prevSlide(); // Swipe right - go to previous
-        setIsDragging(false);
-      }
+    const diff = (startX - x) * 1.5; // Adjust sensitivity
+    if (trackRef.current) {
+      const cardWidth = 340;
+      const gap = 30;
+      const maxOffset = (totalSlides - itemsPerView) * (cardWidth + gap);
+      let newOffset = scrollLeft + diff;
+      newOffset = Math.max(0, Math.min(newOffset, maxOffset));
+      trackRef.current.style.transform = `translateX(-${newOffset}px)`;
     }
   };
 
   const handleEnd = () => {
+    if (!isDragging) return;
     setIsDragging(false);
+    
+    if (trackRef.current) {
+      const cardWidth = 340;
+      const gap = 30;
+      const currentOffset = parseFloat(trackRef.current.style.transform.replace('translateX(-', '').replace('px)', '')) || 0;
+      const slideIndex = Math.round(currentOffset / (cardWidth + gap));
+      goToSlide(slideIndex);
+    }
   };
 
   // Keyboard navigation
