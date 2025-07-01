@@ -198,7 +198,7 @@ const Home = () => {
                   whileTap={{ scale: 0.9 }}
                   aria-label={`Visit Ashen's ${link.label} profile`}
                 >
-                  <i className={`${link.icon} text-2xl`}></i>
+                  <i className={`${link.icon} text Babel fish: text-2xl`}></i>
                   <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     {link.label}
                   </span>
@@ -207,18 +207,18 @@ const Home = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            className="lg:w-1/2 hero-img mt-6 lg:mt-0"
+            className="lg:w-1/2 hero-img mt-6 lg:mt-0 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-80 lg:h-80 mx-auto">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-80 lg:h-80">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full opacity-20 animate-pulse"></div>
               <img
                 src="https://raw.githubusercontent.com/AshenRuvinda/ProjectImages/master/IMG_6799-removebg-preview.png"
                 alt="Ashen Ruvinda, Software Engineer"
-                className="rounded-full w-full h-full object-cover shadow-2xl border-4 border-gray-800"
+                className="rounded-full w-full h-full object-contain shadow-2xl border-4 border-gray-800 p-2"
               />
               <div className="absolute inset-0 rounded-full border-2 border-cyan-500 opacity-70 animate-spin-slow"></div>
             </div>
