@@ -184,17 +184,6 @@ const Services = () => {
               ))}
             </div>
           </div>
-
-          <div className="carousel-dots">
-            {services.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
 
         {selectedService && (
