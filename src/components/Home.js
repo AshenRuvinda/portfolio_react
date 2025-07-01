@@ -118,7 +118,7 @@ const Home = () => {
         </motion.div>
       )}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8">
           <motion.div
             className="lg:w-1/2 hero-content text-center lg:text-left"
             variants={fadeIn}
@@ -126,13 +126,13 @@ const Home = () => {
             animate="visible"
           >
             <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-teal-500"
+              className="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-teal-500"
               variants={fadeIn}
             >
               Hey, I'm Ashen Ruvinda
             </motion.h1>
             <motion.h2
-              className="text-3xl md:text-4xl mb-6"
+              className="text-2xl md:text-3xl lg:text-3xl mb-6"
               variants={fadeIn}
               transition={{ delay: 0.2 }}
             >
@@ -152,14 +152,14 @@ const Home = () => {
               />
             </motion.h2>
             <motion.p
-              className="mb-8 text-lg text-gray-100 max-w-2xl mx-auto lg:mx-0"
+              className="mb-6 text-base md:text-lg text-gray-100 max-w-xl mx-auto lg:mx-0"
               variants={fadeIn}
               transition={{ delay: 0.4 }}
             >
               Crafting innovative digital solutions with clean, efficient code. Passionate about transforming complex challenges into seamless, user-friendly experiences.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
               variants={fadeIn}
               transition={{ delay: 0.6 }}
             >
@@ -183,7 +183,7 @@ const Home = () => {
               </Link>
             </motion.div>
             <motion.div
-              className="flex gap-6 justify-center lg:justify-start mt-6"
+              className="flex gap-5 justify-center lg:justify-start mt-5"
               variants={fadeIn}
               transition={{ delay: 0.8 }}
             >
@@ -198,7 +198,7 @@ const Home = () => {
                   whileTap={{ scale: 0.9 }}
                   aria-label={`Visit Ashen's ${link.label} profile`}
                 >
-                  <i className={`${link.icon} text-3xl`}></i>
+                  <i className={`${link.icon} text-2xl`}></i>
                   <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     {link.label}
                   </span>
@@ -207,13 +207,13 @@ const Home = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            className="lg:w-1/2 hero-img mt-8 lg:mt-0"
+            className="lg:w-1/2 hero-img mt-6 lg:mt-0"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
           >
-            <div className="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-80 lg:h-80 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full opacity-20 animate-pulse"></div>
               <img
                 src="https://raw.githubusercontent.com/AshenRuvinda/ProjectImages/master/IMG_6799-removebg-preview.png"
