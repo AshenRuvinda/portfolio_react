@@ -75,6 +75,15 @@ const Projects = () => {
       github: 'https://github.com/AshenRuvinda/Project-HillTop',
       website: 'https://project-hill-top.vercel.app/',
     },
+    {
+      title: 'Personal Portfolio',
+      description: '',
+      extendedDescription: 'A personal portfolio showcases your skills, projects, and contact info using HTML, CSS, and JavaScript with responsive design, animations, and interactive features for engagement.',
+      image: 'https://img.freepik.com/free-vector/portfolio-update-concept-illustration_114360-4892.jpg',
+      tags: ['Html', 'Css', 'JavaScript'],
+      github: 'https://github.com/AshenRuvinda/PortfolioWEB-Html-Css-Js-',
+      website: 'https://ashenruvinda.github.io/PortfolioWEB-Html-Css-Js-/',
+    },
   ];
 
   const getTagColor = (tag) => {
@@ -86,13 +95,16 @@ const Projects = () => {
       React: 'bg-emerald-500 text-emerald-100',
       SQL: 'bg-purple-500 text-purple-100',
       MongoDB: 'bg-green-600 text-green-100',
+      Html: 'bg-red-500 text-red-100',
+      Css: 'bg-blue-600 text-blue-100',
+      JavaScript: 'bg-yellow-600 text-yellow-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.offsetWidth * 0.8; // Scroll 80% of container width
+      const scrollAmount = scrollRef.current.offsetWidth * 0.8;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',

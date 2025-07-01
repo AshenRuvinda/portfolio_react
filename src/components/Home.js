@@ -136,14 +136,14 @@ const Home = () => {
               variants={fadeIn}
               transition={{ delay: 0.2 }}
             >
-              I'm a{' '}
+              I'm {' '}
               <ReactTyped
                 strings={[
-                  'Full-Stack Developer',
-                  'Software Engineer',
-                  'UI/UX Enthusiast',
-                  'Tech Innovator',
-                  'Problem Solver',
+                  'a Full-Stack Developer',
+                  'a Software Engineer',
+                  'a UI/UX Enthusiast',
+                  'a Tech Innovator',
+                  'a Problem Solver',
                 ]}
                 typeSpeed={80}
                 backSpeed={50}
