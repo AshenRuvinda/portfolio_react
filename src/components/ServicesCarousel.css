@@ -1,0 +1,287 @@
+/* Services Carousel Styles */
+.services-carousel {
+    padding: 80px 0;
+    background: #0f172a;
+    color: white;
+    overflow: hidden;
+  }
+  
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .services-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: white;
+  }
+  
+  .services-subtitle {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 400;
+  }
+  
+  .carousel-container {
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    gap: 30px;
+    padding: 20px 0;
+  }
+  
+  .service-card {
+    flex: 0 0 340px;
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #334155;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: #3b82f6;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .service-card:hover::before {
+    opacity: 1;
+  }
+  
+  .service-card-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 32px;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
+  }
+  
+  .service-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+  }
+  
+  .service-description {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+  
+  
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #334155;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dot.active {
+    background: #3b82f6;
+    transform: scale(1.2);
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #334155;
+    position: relative;
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    margin-right: 20px;
+  }
+  
+  .modal-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+  }
+  
+  .modal-description {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  
+  .modal-close {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .modal-close:hover {
+    background: #2563eb;
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .services-carousel {
+      padding: 60px 0;
+    }
+    
+    .services-container {
+      padding: 0 16px;
+    }
+    
+    .services-title {
+      font-size: 32px;
+    }
+    
+    .services-subtitle {
+      font-size: 16px;
+    }
+    
+    .carousel-track {
+      gap: 20px;
+      padding: 10px 0;
+    }
+    
+    .service-card {
+      flex: 0 0 280px;
+      padding: 30px 20px;
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+    }
+    
+    .service-title {
+      font-size: 20px;
+    }
+    
+    .service-description {
+      font-size: 14px;
+    }
+    
+  
+    
+    .modal-content {
+      padding: 30px 20px;
+    }
+    
+    .modal-title {
+      font-size: 24px;
+    }
+    
+    .modal-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      margin-right: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-title {
+      font-size: 28px;
+    }
+    
+    .service-card {
+      flex: 0 0 260px;
+      padding: 24px 16px;
+    }
+    
+  
+    
+    .carousel-dots {
+      margin-top: 30px;
+    }
+  }

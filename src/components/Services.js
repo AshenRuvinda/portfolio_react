@@ -1,72 +1,220 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import './ServicesCarousel.css';
 
 const Services = () => {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedService, setSelectedService] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const trackRef = useRef(null);
 
   const services = [
     {
       icon: 'fas fa-code',
       title: 'Web Development',
-      description: 'Building responsive, modern websites and web applications using the latest technologies and frameworks.',
+      description: 'Create modern, responsive websites and web applications using cutting-edge technologies like React, Next.js, and TypeScript. From simple landing pages to complex web platforms.'
     },
     {
       icon: 'fas fa-mobile-alt',
-      title: 'Mobile App Development',
-      description: 'Creating cross-platform mobile applications that provide seamless user experiences across devices.',
-    },
-    {
-      icon: 'fas fa-database',
-      title: 'Database Design',
-      description: 'Designing efficient and scalable database architectures to support your applications.',
+      title: 'Mobile Apps',
+      description: 'Develop cross-platform mobile applications for iOS and Android using React Native and Flutter. Native performance with a single codebase.'
     },
     {
       icon: 'fas fa-server',
       title: 'Backend Development',
-      description: 'Building robust server-side applications and APIs that power your web and mobile applications.',
+      description: 'Build robust server-side applications, APIs, and microservices using Node.js, Python, and cloud technologies. Scalable and secure backend solutions.'
+    },
+    {
+      icon: 'fas fa-database',
+      title: 'Database Design',
+      description: 'Design and optimize database architectures using SQL and NoSQL databases. Ensure data integrity, performance, and scalability for your applications.'
     },
     {
       icon: 'fas fa-paint-brush',
-      title: 'Digital Design',
-      description: 'Creating visually engaging digital assets including UI/UX designs, branding, and multimedia content.',
+      title: 'UI/UX Design',
+      description: 'Create beautiful, user-friendly interfaces and experiences. From wireframes to pixel-perfect designs using Figma, Adobe XD, and modern design principles.'
     },
     {
-      icon: 'fas fa-video',
-      title: 'Video Editing',
-      description: 'Professional editing of video content for social media, marketing, and storytelling using modern editing tools.',
-    },
+      icon: 'fas fa-cloud',
+      title: 'Cloud Services',
+      description: 'Deploy and manage applications on cloud platforms like AWS, Google Cloud, and Azure. DevOps, CI/CD pipelines, and infrastructure as code.'
+    }
   ];
 
+  const itemsPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+  const totalSlides = services.length;
+
+  const goToSlide = (slideIndex) => {
+    // Allow infinite scrolling by wrapping around
+    let newSlide = slideIndex;
+    if (slideIndex < 0) {
+      newSlide = totalSlides - 1;
+    } else if (slideIndex >= totalSlides) {
+      newSlide = 0;
+    }
+    
+    setCurrentSlide(newSlide);
+    
+    if (trackRef.current) {
+      const cardWidth = 340;
+      const gap = 30;
+      const offset = newSlide * (cardWidth + gap);
+      trackRef.current.style.transform = `translateX(-${offset}px)`;
+    }
+  };
+
+  const nextSlide = () => {
+    goToSlide(currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    goToSlide(currentSlide - 1);
+  };
+
+  const openModal = (service) => {
+    setSelectedService(service);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setSelectedService(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  // Touch/Mouse drag handlers
+  const handleStart = (e) => {
+    setIsDragging(true);
+    const x = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    setStartX(x);
+    setScrollLeft(currentSlide);
+  };
+
+  const handleMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const x = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const diff = startX - x;
+    const threshold = 100;
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextSlide(); // Swipe left - go to next
+        setIsDragging(false);
+      } else {
+        prevSlide(); // Swipe right - go to previous
+        setIsDragging(false);
+      }
+    }
+  };
+
+  const handleEnd = () => {
+    setIsDragging(false);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedService) {
+        if (e.key === 'Escape') closeModal();
+        return;
+      }
+      
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSlide, selectedService]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      goToSlide(0); // Reset to first slide on resize
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section id="services" className="section">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold mb-2">My Services</h2>
-          <p className="text-lg">What I can do for you</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="card p-6 text-center"
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: index * 0.2 }}
+    <>
+      <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      />
+      
+      <section id="services" className="services-carousel">
+        <div className="services-container">
+          <div className="services-header">
+            <h2 className="services-title">My Services</h2>
+            <p className="services-subtitle">Professional solutions tailored to your needs</p>
+          </div>
+
+          <div className="carousel-container">
+            <div 
+              className="carousel-track"
+              ref={trackRef}
+              onMouseDown={handleStart}
+              onMouseMove={handleMove}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={handleStart}
+              onTouchMove={handleMove}
+              onTouchEnd={handleEnd}
+              style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
             >
-              <div className="service-icon mb-4">
-                <i className={`${service.icon} icon text-3xl`}></i>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p>{service.description}</p>
-            </motion.div>
-          ))}
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="service-card"
+                  onClick={() => openModal(service)}
+                  onMouseDown={(e) => e.preventDefault()}
+                >
+                  <div className="service-card-content">
+                    <div className="service-icon">
+                      <i className={service.icon}></i>
+                    </div>
+                    <h3 className="service-title">{service.title}</h3>
+                    <p className="service-description">{service.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="carousel-dots">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => goToSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+
+        {selectedService && (
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <div className="modal-icon">
+                  <i className={selectedService.icon}></i>
+                </div>
+                <h3 className="modal-title">{selectedService.title}</h3>
+              </div>
+              <p className="modal-description">{selectedService.description}</p>
+              <button className="modal-close" onClick={closeModal}>
+                Got it
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 
