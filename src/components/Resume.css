@@ -1,6 +1,6 @@
 .resume-section {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #4677b6 100%);
   position: relative;
   overflow: hidden;
   min-height: 100vh; /* Ensure section is tall enough for bottom positioning */
@@ -97,7 +97,7 @@
 .resume-item {
   position: relative;
   margin-bottom: 2rem;
-  background: white;
+  background: linear-gradient(135deg, #bbcfec 0%, #ffffff 100%);
   border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
