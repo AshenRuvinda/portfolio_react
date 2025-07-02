@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import '../styles/App.css';
+import './Projects.css';
 
 const Projects = () => {
   const [flippedCard, setFlippedCard] = useState(null);
