@@ -19,6 +19,19 @@ const Resume = () => {
     }
   };
 
+  const catAnimation = {
+    hidden: { opacity: 0, y: '100%' },
+    visible: { 
+      opacity: 0.9, 
+      y: 0, 
+      transition: { 
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99],
+        delay: 0.5
+      }
+    }
+  };
+
   const lottieOptions = {
     loop: true,
     autoplay: true,
@@ -72,7 +85,7 @@ const Resume = () => {
           initial="hidden"
           animate="visible"
         >
-          <h2 className="resume-title">My Journey</h2>
+          <h2 className="resume-title">My Resume</h2>
           <p className="resume-subtitle">Education & Professional Experience</p>
         </motion.div>
         <div className="resume-grid">
@@ -172,12 +185,11 @@ const Resume = () => {
         </div>
         <motion.div
           className="cartoon-character"
-          variants={fadeIn}
+          variants={catAnimation}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 0.5 }}
         >
-          <Lottie options={lottieOptions} height={120} width={120} />
+          <Lottie options={lottieOptions} />
         </motion.div>
       </div>
     </section>
