@@ -1,50 +1,88 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ReactTyped } from 'react-typed';
-import { Link } from 'react-scroll';
-import '../styles/App.css';
+import { motion, AnimatePresence } from 'framer-motion';
+import './Home.css';
 
 const Home = () => {
   const [projectCount, setProjectCount] = useState(null);
   const [displayCount, setDisplayCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentRole, setCurrentRole] = useState(0);
+
+  const roles = [
+    'Full-Stack Developer',
+    'Software Engineer',
+    'UI/UX Enthusiast',
+    'Tech Innovator',
+    'Problem Solver',
+  ];
 
   const fadeIn = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const staggerChild = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
+
   const bubbleVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 15 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  };
+
+  const socialLinkVariants = {
     hidden: { opacity: 0, scale: 0.5, y: 10 },
-    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, type: 'spring', stiffness: 100 } },
   };
 
   const socialLinks = [
     { icon: 'fab fa-github', href: 'https://github.com/AshenRuvinda', label: 'GitHub' },
-    { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/ashen-ruvinda-929b83345', label: 'LinkedIn' },
+    { icon: 'fab fa-linkedin', href: 'https://www.linkedin.com/in/ashen-ruvinda-929b83345', label: 'LinkedIn' },
     { icon: 'fab fa-twitter', href: 'https://twitter.com', label: 'Twitter' },
   ];
 
   const floatingElements = [
-    { type: 'bracket', symbol: '<', className: 'bracket bracket-1', label: 'Opening bracket' },
-    { type: 'bracket', symbol: '>', className: 'bracket bracket-2', label: 'Closing bracket' },
-    { type: 'bracket', symbol: '<', className: 'bracket bracket-3', label: 'Opening bracket' },
-    { type: 'bracket', symbol: '>', className: 'bracket bracket-4', label: 'Closing bracket' },
-    { type: 'bracket', symbol: '</', className: 'bracket bracket-5', label: 'Closing tag' },
-    { type: 'bracket', symbol: '/>', className: 'bracket bracket-6', label: 'Self-closing tag' },
-    { type: 'icon', icon: 'fab fa-python', className: 'tech-icon tech-icon-1', label: 'Python' },
-    { type: 'icon', icon: 'fab fa-react', className: 'tech-icon tech-icon-2', label: 'React' },
-    { type: 'icon', icon: 'fab fa-github', className: 'tech-icon tech-icon-3', label: 'GitHub' },
-    { type: 'icon', icon: 'fas fa-fire', className: 'tech-icon tech-icon-4', label: 'Firebase' },
-    { type: 'icon', icon: 'fas fa-mobile-alt', className: 'tech-icon tech-icon-5', label: 'Flutter' },
+    { type: 'bracket', symbol: '<', className: 'home-bracket-1', label: 'Opening bracket' },
+    { type: 'bracket', symbol: '>', className: 'home-bracket-2', label: 'Closing bracket' },
+    { type: 'bracket', symbol: '<', className: 'home-bracket-3', label: 'Opening bracket' },
+    { type: 'bracket', symbol: '>', className: 'home-bracket-4', label: 'Closing bracket' },
+    { type: 'bracket', symbol: '</', className: 'home-bracket-5', label: 'Closing tag' },
+    { type: 'bracket', symbol: '/>', className: 'home-bracket-6', label: 'Self-closing tag' },
   ];
 
-  // Mock function to simulate fetching project count
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
   const fetchProjectCount = async () => {
     setIsLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Mock delay
-      setProjectCount(8); // Mock project count
+      await new Promise(resolve => setTimeout(resolve, 800));
+      setProjectCount(8);
     } catch (error) {
       console.error('Error fetching project count:', error);
       setProjectCount(0);
@@ -53,13 +91,12 @@ const Home = () => {
     }
   };
 
-  // Animate count from 0 to projectCount
   useEffect(() => {
     if (projectCount === null) return;
     let start = 0;
     const end = projectCount;
-    const duration = 1500; // 1.5 seconds
-    const increment = end / (duration / 16); // ~60fps
+    const duration = 1200;
+    const increment = end / (duration / 16);
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -72,120 +109,200 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [projectCount]);
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Split text for letter-by-letter animation
+  const helloText = "Hello, I'm".split('');
+  const nameText = "Ashen Ruvinda".split('');
+  const subtitleText = "I'm a ".split('');
+
   return (
-    <section id="hero" className="section hero-section relative overflow-hidden">
-      <div className="hero-gradient"></div>
-      <div className="hero-particles absolute inset-0 pointer-events-none">
-        <div className="particle particle-1"></div>
-        <div className="particle particle-2"></div>
-        <div className="particle particle-3"></div>
+    <div className="home-hero-section">
+      <div className="home-hero-background">
+        <div className="home-hero-gradient-overlay" />
+        <div className="home-particles-container">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="home-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${Math.random() * 2 + 1}px`,
+                height: `${Math.random() * 2 + 1}px`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${Math.random() * 4 + 3}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="home-floating-elements">
         {floatingElements.map((element, index) => (
           <motion.div
             key={index}
-            className={element.className}
-            whileHover={{ scale: 1.2, color: '#3b82f6' }}
-            transition={{ duration: 0.3 }}
-            aria-label={element.label}
+            className={`home-floating-element ${element.className}`}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: [0.15, 0.3, 0.15], 
+              scale: [0.9, 1.1, 0.9],
+              rotate: [0, 90, 180]
+            }}
+            transition={{ 
+              duration: 8 + index * 0.5, 
+              repeat: Infinity, 
+              delay: index * 0.3 
+            }}
+            style={{
+              left: `${15 + (index * 20) % 70}%`,
+              top: `${20 + (index * 25) % 60}%`,
+            }}
+            role="presentation"
+            aria-hidden="true"
           >
-            {element.type === 'bracket' ? (
-              element.symbol
-            ) : (
-              <i className={element.icon} title={element.label}></i>
-            )}
+            {element.symbol}
           </motion.div>
         ))}
       </div>
+
       <motion.button
         onClick={fetchProjectCount}
-        className="project-count-btn absolute bottom-5 right-5"
-        aria-label="Load number of projects completed"
-        whileHover={{ scale: 1.1, rotate: 5, boxShadow: '0 0 25px rgba(59, 130, 246, 0.7)' }}
-        whileTap={{ scale: 0.9 }}
+        className="home-project-count-btn"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         disabled={isLoading}
+        aria-label="Fetch project count"
       >
-        <i className="fas fa-folder-open"></i>
+        <i className="fas fa-folder" />
       </motion.button>
-      {projectCount !== null && (
-        <motion.div
-          className="project-count-bubble absolute bottom-16 right-5"
-          variants={bubbleVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <span className="text-lg font-bold">
-            {isLoading ? 'Loading...' : displayCount > 0 ? `${displayCount} Projects` : 'No Projects Found'}
-          </span>
-        </motion.div>
-      )}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-8">
+
+      <AnimatePresence>
+        {projectCount !== null && (
           <motion.div
-            className="lg:w-1/2 hero-content text-center lg:text-left"
-            variants={fadeIn}
+            className="home-project-bubble"
+            variants={bubbleVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            role="status"
+          >
+            <span>
+              {isLoading ? 'Loading...' : displayCount > 0 ? `${displayCount} Projects` : 'No Projects Found'}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="home-hero-container">
+        <div className="home-hero-grid">
+          <motion.div
+            className="home-hero-content"
+            variants={staggerContainer}
             initial="hidden"
             animate="visible"
           >
-            <motion.h1
-              className="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-teal-500"
-              variants={fadeIn}
-            >
-              Hey, I'm Ashen Ruvinda
-            </motion.h1>
-            <motion.h2
-              className="text-2xl md:text-3xl lg:text-3xl mb-6"
-              variants={fadeIn}
-              transition={{ delay: 0.2 }}
-            >
-              I'm {' '}
-              <ReactTyped
-                strings={[
-                  'a Full-Stack Developer',
-                  'a Software Engineer',
-                  'a UI/UX Enthusiast',
-                  'a Tech Innovator',
-                  'a Problem Solver',
-                ]}
-                typeSpeed={80}
-                backSpeed={50}
-                loop
-                className="text-cyan-400 font-semibold"
-              />
-            </motion.h2>
-            <motion.p
-              className="mb-6 text-base md:text-lg text-gray-100 max-w-xl mx-auto lg:mx-0"
-              variants={fadeIn}
-              transition={{ delay: 0.4 }}
-            >
-              Crafting innovative digital solutions with clean, efficient code. Passionate about transforming complex challenges into seamless, user-friendly experiences.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
-              variants={fadeIn}
-              transition={{ delay: 0.6 }}
-            >
-              <Link
-                to="contact"
-                smooth={true}
-                duration={500}
-                className="btn btn-primary flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-gray-900 font-semibold hover:from-cyan-400 hover:to-teal-400 transition-all duration-300 shadow-md hover:shadow-lg"
-                aria-label="Get in touch with Ashen"
-              >
-                <i className="fas fa-envelope"></i> Get In Touch
-              </Link>
-              <Link
-                to="projects"
-                smooth={true}
-                duration={500}
-                className="btn btn-outline flex items-center justify-center gap-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-gray-900 transition-all duration-300 shadow-md hover:shadow-lg"
-                aria-label="View Ashen's projects"
-              >
-                <i className="fas fa-briefcase"></i> View My Work
-              </Link>
+            <motion.div variants={staggerChild}>
+              <h1 className="home-hero-title">
+                <span className="block">
+                  {helloText.map((letter, index) => (
+                    <motion.span
+                      key={`hello-${index}`}
+                      variants={letterVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      {letter === ' ' ? '\u00A0' : letter}
+                    </motion.span>
+                  ))}
+                </span>
+                <span className="home-hero-name">
+                  {nameText.map((letter, index) => (
+                    <motion.span
+                      key={`name-${index}`}
+                      variants={letterVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: (helloText.length + index) * 0.05 }}
+                    >
+                      {letter === ' ' ? '\u00A0' : letter}
+                    </motion.span>
+                  ))}
+                </span>
+              </h1>
             </motion.div>
+
+            <motion.div variants={staggerChild} className="home-hero-subtitle">
+              <span>
+                {subtitleText.map((letter, index) => (
+                  <motion.span
+                    key={`subtitle-${index}`}
+                    variants={letterVariants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: (helloText.length + nameText.length + index) * 0.05 }}
+                  >
+                    {letter === ' ' ? '\u00A0' : letter}
+                  </motion.span>
+                ))}
+              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentRole}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.6 }}
+                  className="home-role-text"
+                >
+                  {roles[currentRole]}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p
+              variants={staggerChild}
+              className="home-hero-description"
+            >
+              Crafting innovative digital solutions with clean, efficient code. Passionate about transforming 
+              complex challenges into seamless, user-friendly experiences that make a difference.
+            </motion.p>
+
             <motion.div
-              className="flex gap-5 justify-center lg:justify-start mt-5"
-              variants={fadeIn}
-              transition={{ delay: 0.8 }}
+              variants={staggerChild}
+              className="home-hero-buttons"
+            >
+              <motion.button
+                onClick={() => scrollToSection('contact')}
+                className="home-btn home-btn-primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Get in touch"
+              >
+                Get In Touch
+              </motion.button>
+              <motion.button
+                onClick={() => scrollToSection('projects')}
+                className="home-btn home-btn-outline"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="View my work"
+              >
+                View My Work
+              </motion.button>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="home-social-links"
             >
               {socialLinks.map((link, index) => (
                 <motion.a
@@ -193,39 +310,82 @@ const Home = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-cyan-400 transition-all duration-300 relative group"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className="home-social-link"
+                  variants={socialLinkVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
-                  aria-label={`Visit Ashen's ${link.label} profile`}
+                  aria-label={`Visit my ${link.label} profile`}
                 >
-                  <i className={`${link.icon} text-2xl`}></i>
-                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    {link.label}
-                  </span>
+                  <i className={link.icon} />
+                  <span className="home-social-tooltip">{link.label}</span>
                 </motion.a>
               ))}
             </motion.div>
           </motion.div>
+
           <motion.div
-            className="lg:w-1/2 hero-img mt-6 lg:mt-0 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="home-hero-image-container"
+            initial={{ opacity: 0, scale: 0.9, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-80 lg:h-80 image-container">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full opacity-20 animate-pulse"></div>
+            <div className="home-image-wrapper">
+              <motion.div
+                className="home-rotating-ring home-ring-1"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                whileHover={{ rotate: 380, transition: { duration: 1 } }}
+              />
+              <motion.div
+                className="home-rotating-ring home-ring-2"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                whileHover={{ rotate: -380, transition: { duration: 1 } }}
+              />
+              <div className="home-image-glow" />
               <img
                 src="https://raw.githubusercontent.com/AshenRuvinda/ProjectImages/master/IMG_6799-removebg-preview.png"
                 alt="Ashen Ruvinda, Software Engineer"
-                className="rounded-full w-full h-full object-contain shadow-2xl border-4 border-gray-800 p-2"
+                className="home-profile-image"
               />
-              <div className="absolute inset-0 rounded-full border-2 border-cyan-500 opacity-70 animate-spin-slow"></div>
+              <motion.div
+                className="home-status-badge home-badge-available"
+                animate={{ y: [-5, 5, -5] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                Available
+              </motion.div>
+              <motion.div
+                className="home-status-badge home-badge-fullstack"
+                animate={{ y: [5, -5, 5] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+              >
+                Full Stack
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
+
+      <motion.div
+        className="home-scroll-indicator"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
+        role="presentation"
+      >
+        <span className="text-sm">Scroll to explore</span>
+        <div className="home-scroll-mouse">
+          <motion.div
+            className="home-scroll-wheel"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity }}
+          />
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
