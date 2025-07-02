@@ -1,10 +1,31 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Lottie from 'react-lottie';
+import animationData from './cartoon-character.json';
+import './Resume.css';
 
 const Resume = () => {
+  const [expandedItem, setExpandedItem] = useState(null);
+
   const fadeIn = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
   };
 
   const resumeItems = {
@@ -13,13 +34,13 @@ const Resume = () => {
         year: '2022 - Present',
         title: 'BSc in Software Engineering',
         institution: 'NSBM Green University',
-        description: 'I am a third year student at NSBM Green University. I am pursuing my studies in the Software Engineering department.',
+        description: 'Third-year student pursuing Software Engineering, focusing on advanced programming concepts, system design, and agile methodologies.',
       },
       {
         year: '2019 - 2020',
         title: 'GCE AL - Maths Stream',
         institution: 'R/Eheliyagoda Central College',
-        description: 'I successfully sat and passed my General Certificate of Education Advanced Level examination.',
+        description: 'Successfully completed Advanced Level examinations with distinctions in Mathematics and Physics.',
       },
     ],
     experience: [
@@ -27,66 +48,137 @@ const Resume = () => {
       //   year: '2023 - Present',
       //   title: 'Junior Software Developer (Part-time)',
       //   institution: 'InnoTech Solutions',
-      //   description: 'Working on web application development using React.js and Node.js. Contributing to agile development cycles and participating in code reviews.',
+      //   description: 'Developed responsive web applications using React.js and Node.js, implemented RESTful APIs, and participated in sprint planning.',
       // },
       // {
       //   year: '2022 - 2023',
       //   title: 'Software Development Intern',
       //   institution: 'GlobalTech Corp',
-      //   description: 'Assisted in developing and testing frontend components using HTML, CSS, and JavaScript. Collaborated with senior developers on feature implementation.',
+      //   description: 'Contributed to frontend development using modern JavaScript frameworks and collaborated on cross-functional team projects.',
       // },
     ],
   };
 
+  const toggleExpand = (index) => {
+    setExpandedItem(expandedItem === index ? null : index);
+  };
+
   return (
-    <section id="resume" className="section">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold mb-2">My Resume</h2>
-          <p className="text-lg">Education & Experience</p>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Education</h3>
-            {resumeItems.education.map((item, index) => (
-              <motion.div
-                key={index}
-                className="resume-item card p-4 mb-4"
-                variants={fadeIn}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: index * 0.2 }}
-              >
-                <span className="resume-year text-cyan-400">{item.year}</span>
-                <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-                <h4 className="text-lg mb-2">{item.institution}</h4>
-                <p className="text-sm">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Experience</h3>
-            {resumeItems.experience.length > 0 ? (
-              resumeItems.experience.map((item, index) => (
+    <section id="resume" className="resume-section">
+      <div className="resume-container">
+        <motion.div 
+          className="resume-header"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+        >
+          <h2 className="resume-title">My Journey</h2>
+          <p className="resume-subtitle">Education & Professional Experience</p>
+        </motion.div>
+        <div className="resume-grid">
+          <div className="resume-column">
+            <h3 className="resume-section-title">Education</h3>
+            <div className="timeline">
+              {resumeItems.education.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="resume-item card p-4 mb-4"
+                  className="resume-item"
                   variants={fadeIn}
                   initial="hidden"
                   animate="visible"
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ delay: index * 0.3 }}
                 >
-                  <span className="resume-year text-cyan-400">{item.year}</span>
-                  <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-                  <h4 className="text-lg mb-2">{item.institution}</h4>
-                  <p className="text-sm">{item.description}</p>
+                  <div className="timeline-dot"></div>
+                  <div className="timeline-content">
+                    <span className="resume-year">{item.year}</span>
+                    <h3 className="resume-item-title">{item.title}</h3>
+                    <h4 className="resume-item-institution">{item.institution}</h4>
+                    <button 
+                      className="expand-button"
+                      onClick={() => toggleExpand(`edu-${index}`)}
+                    >
+                      {expandedItem === `edu-${index}` ? 'Hide' : 'Show'} Details
+                    </button>
+                    <AnimatePresence>
+                      {expandedItem === `edu-${index}` && (
+                        <motion.p
+                          className="resume-item-description"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {item.description}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </motion.div>
-              ))
-            ) : (
-              <p className="text-sm italic">No professional experience listed yet. Check out my projects to see my skills in action!</p>
-            )}
+              ))}
+            </div>
+          </div>
+          <div className="resume-column">
+            <h3 className="resume-section-title">Experience</h3>
+            <div className="timeline">
+              {resumeItems.experience.length > 0 ? (
+                resumeItems.experience.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="resume-item"
+                    variants={fadeIn}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: index * 0.3 }}
+                  >
+                    <div className="timeline-dot"></div>
+                    <div className="timeline-content">
+                      <span className="resume-year">{item.year}</span>
+                      <h3 className="resume-item-title">{item.title}</h3>
+                      <h4 className="resume-item-institution">{item.institution}</h4>
+                      <button 
+                        className="expand-button"
+                        onClick={() => toggleExpand(`exp-${index}`)}
+                      >
+                        {expandedItem === `exp-${index}` ? 'Hide' : 'Show'} Details
+                      </button>
+                      <AnimatePresence>
+                        {expandedItem === `exp-${index}` && (
+                          <motion.p
+                            className="resume-item-description"
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {item.description}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.p 
+                  className="resume-no-experience"
+                  variants={fadeIn}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  No professional experience listed yet. Explore my projects to see my skills in action!
+                </motion.p>
+              )}
+            </div>
           </div>
         </div>
+        <motion.div
+          className="cartoon-character"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.5 }}
+        >
+          <Lottie options={lottieOptions} height={120} width={120} />
+        </motion.div>
       </div>
     </section>
   );
