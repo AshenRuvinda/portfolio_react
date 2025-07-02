@@ -352,39 +352,25 @@ const Home = () => {
                 className="home-profile-image"
               />
               <motion.div
-                className="home-status-badge home-badge-available"
+                className="absolute -top-4 -right-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
                 animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity }}
               >
-                Available
+                Available 🟢
               </motion.div>
               <motion.div
-                className="home-status-badge home-badge-fullstack"
+                className="absolute -bottom-4 -left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
                 animate={{ y: [5, -5, 5] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
               >
-                Full Stack
+                Full Stack 💻
               </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      <motion.div
-        className="home-scroll-indicator"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
-        role="presentation"
-      >
-        <span className="text-sm">Scroll to explore</span>
-        <div className="home-scroll-mouse">
-          <motion.div
-            className="home-scroll-wheel"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
+      
     </div>
   );
 };
