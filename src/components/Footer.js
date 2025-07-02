@@ -105,9 +105,8 @@ const Footer = () => {
     { name: 'Web Development', to: 'services-web', icon: 'fas fa-globe' },
     { name: 'Mobile Apps', to: 'services-mobile', icon: 'fas fa-mobile-alt' },
     { name: 'UI/UX Design', to: 'services-uiux', icon: 'fas fa-paint-brush' },
-    { name: 'API Development', to: 'services-api', icon: 'fas fa-server' },
-    { name: 'Cloud Solutions', to: 'services-cloud', icon: 'fas fa-cloud' },
-    { name: 'Consulting', to: 'services-consulting', icon: 'fas fa-lightbulb' },
+    { name: 'Logo Design', to: 'services-cloud', icon: 'fas fa-cloud' },
+    
   ];
 
   const contactInfo = [
@@ -119,23 +118,23 @@ const Footer = () => {
     },
     { 
       icon: 'fas fa-map-marker-alt', 
-      text: 'Colombo, Sri Lanka', 
+      text: 'Homagama, Sri Lanka', 
       href: '#', 
       label: 'Location' 
     },
     { 
       icon: 'fas fa-phone', 
       text: '+94 77 123 4567', 
-      href: 'tel:+94771234567', 
+      href: 'tel:+94761511231', 
       label: 'Phone' 
     },
   ];
 
   const stats = [
-    { number: '50+', label: 'Projects Completed' },
-    { number: '3+', label: 'Years Experience' },
-    { number: '25+', label: 'Happy Clients' },
-    { number: '100%', label: 'Client Satisfaction' },
+    { number: '8', label: 'Projects Completed' },
+    { number: 'x', label: 'Years Experience' },
+    { number: 'x', label: 'Happy Clients' },
+    { number: 'xxx%', label: 'Client Satisfaction' },
   ];
 
   const validateForm = (name, email) => {
@@ -201,7 +200,7 @@ const Footer = () => {
               "email": "maaruvinda@students.nsbm.ac.lk",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Colombo",
+                "addressLocality": "Homagama",
                 "addressCountry": "LK"
               },
               "sameAs": [
@@ -306,15 +305,15 @@ const Footer = () => {
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
-                  ⚡
+                  
                 </motion.span>
-                AshenRuvinda
+                Ashen Ruvinda
                 <motion.span 
                   className="logo-accent"
                   animate={{ rotate: [360, 0] }}
                   transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                 >
-                  ⚡
+                  
                 </motion.span>
               </motion.a>
               
@@ -325,7 +324,7 @@ const Footer = () => {
 
               <div className="location-time">
                 <i className="fas fa-clock"></i>
-                <span>Colombo, LK • {formatTime(currentTime)}</span>
+                <span>Homagama, LK • {formatTime(currentTime)}</span>
               </div>
               
               <div className="footer-social">
@@ -376,7 +375,7 @@ const Footer = () => {
                     smooth={true}
                     duration={500}
                     className="cta-link"
-                    aria-label="View Ashen Ruvinda's portfolio"
+                    aria-label="View Projects"
                   >
                     <i className="fas fa-rocket"></i>
                     View Projects
