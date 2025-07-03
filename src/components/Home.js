@@ -82,7 +82,7 @@ const Home = () => {
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
-      setProjectCount(8);
+      setProjectCount(7);
     } catch (error) {
       console.error('Error fetching project count:', error);
       setProjectCount(0);
