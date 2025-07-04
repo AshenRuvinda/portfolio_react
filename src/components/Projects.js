@@ -107,6 +107,14 @@ const Projects = () => {
       tags: ['Python'],
       github: 'https://github.com/AshenRuvinda/LankaQuickCartMCF',
     },
+    {
+      title: "MERN Stack Login Auth",
+      description: "A MERN stack app with user registration, login, and JWT-based authentication, featuring a responsive UI with Tailwind CSS and MongoDB storage.",
+      extendedDescription: "Built a full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
+      image: "https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg?semt=ais_hybrid&w=740",
+      tags: ["MERN", "MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS", "Authentication"],
+      github: "https://github.com/YourUsername/MernAuthProject"
+    }
   ];
 
   const getTagColor = (tag) => {
@@ -123,6 +131,11 @@ const Projects = () => {
       JavaScript: 'bg-yellow-600 text-yellow-100',
       Tailwind: 'bg-teal-500 text-teal-100',
       PHP: 'bg-indigo-500 text-indigo-100',
+      MERN: 'bg-blue-700 text-blue-100',
+      'Express.js': 'bg-gray-600 text-gray-100',
+      'Node.js': 'bg-lime-600 text-lime-100',
+      JWT: 'bg-red-600 text-red-100',
+      Authentication: 'bg-indigo-600 text-indigo-100'
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
