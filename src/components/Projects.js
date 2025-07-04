@@ -113,7 +113,7 @@ const Projects = () => {
       extendedDescription: "Built a full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
       image: "https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg?semt=ais_hybrid&w=740",
       tags: ["MERN", "MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS", "Authentication"],
-      github: "https://github.com/YourUsername/MernAuthProject"
+      github: "https://github.com/AshenRuvinda/MernAuth-miniProject"
     }
   ];
 
