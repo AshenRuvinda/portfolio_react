@@ -34,6 +34,7 @@ const Skills = () => {
         { name: 'React Native', level: 80, icon: 'fab fa-react' },
         { name: 'HTML/CSS', level: 95, icon: 'fab fa-html5' },
         { name: 'Java', level: 85, icon: 'fab fa-java' },
+        { name: 'Dart', level: 85, icon: 'fab fa-android' },
       ],
     },
     {
@@ -44,6 +45,7 @@ const Skills = () => {
         { name: 'SQL', level: 70, icon: 'fas fa-database' },
         { name: 'PHP', level: 80, icon: 'fab fa-php' },
         { name: 'Firebase', level: 85, icon: 'fas fa-fire' },
+        { name: 'NodeJS', level: 85, icon: 'fab fa-node-js' },
       ],
     },
     {
