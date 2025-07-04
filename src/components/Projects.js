@@ -90,6 +90,23 @@ const Projects = () => {
       tags: ['Flutter', 'Firebase'],
       github: 'https://github.com/AshenRuvinda/Weather_app_admin-App-Flutter-Firebase-',
     },
+
+    {
+      title: 'Login Auth Html CSS & PHP',
+      description: '',
+      extendedDescription: 'Created user authentication system using HTML for Sign Up/Sign In pages and PHP for backend logic, connecting to a database to securely store, validate, and manage user credentials.',
+      image: 'https://image.shutterstock.com/image-vector/twostep-verification-flat-illustration-vector-260nw-2408003415.jpg',
+      tags: ['Html', 'Css', 'PHP'],
+      github: 'https://github.com/AshenRuvinda/LoginAuthWithPHP-miniProject',
+    },
+    {
+      title: 'Minimum Cost Flow Algorithm Real World Implementation',
+      description: '',
+      extendedDescription: 'Created a Python grocery delivery app using the Minimum Cost Flow algorithm to show nearest item locations with lowest delivery cost based on user input and availability.',
+      image: 'https://img.freepik.com/free-vector/shopping-cart-with-bags-gifts-concept-illustration_114360-18775.jpg?semt=ais_hybrid&w=740',
+      tags: ['Python'],
+      github: 'https://github.com/AshenRuvinda/LankaQuickCartMCF',
+    },
   ];
 
   const getTagColor = (tag) => {
@@ -105,6 +122,7 @@ const Projects = () => {
       Css: 'bg-blue-600 text-blue-100',
       JavaScript: 'bg-yellow-600 text-yellow-100',
       Tailwind: 'bg-teal-500 text-teal-100',
+      PHP: 'bg-indigo-500 text-indigo-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
