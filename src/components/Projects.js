@@ -7,6 +7,7 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('main');
   const mainScrollRef = useRef(null);
   const miniScrollRef = useRef(null);
+  const uiuxScrollRef = useRef(null);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 50 },
@@ -35,7 +36,6 @@ const Projects = () => {
       tags: ['Python'],
       github: 'https://github.com/AshenRuvinda/Python-pos-system',
     },
-    
     {
       title: 'E-Commerce Website',
       description: 'Website created for a mobile phone sales company using React and Firebase',
@@ -90,7 +90,6 @@ const Projects = () => {
       tags: ['Flutter', 'Firebase'],
       github: 'https://github.com/AshenRuvinda/Weather_app_admin-App-Flutter-Firebase-',
     },
-
     {
       title: 'Login Auth Html CSS & PHP',
       description: '',
@@ -110,7 +109,7 @@ const Projects = () => {
     {
       title: "MERN Stack Login Auth",
       description: "A MERN stack app with user registration, login, and JWT-based authentication, featuring a responsive UI with Tailwind CSS and MongoDB storage.",
-      extendedDescription: "Built a full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
+      extendedDescription: "Built a's full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
       image: "https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg?semt=ais_hybrid&w=740",
       tags: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS"],
       github: "https://github.com/AshenRuvinda/MernAuth-miniProject",
@@ -123,8 +122,33 @@ const Projects = () => {
       tags: ["React Native", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/AshenRuvinda/ReactNativeLoginAuth-miniproject"
     }
-    
-    
+  ];
+
+  const uiuxDesigns = [
+    //{
+     // title: 'Weather App UI Design',
+    //  description: 'UI/UX design for a weather application created using Figma',
+     // extendedDescription: 'A clean and intuitive UI/UX design for a weather app, focusing on user-friendly navigation and visually appealing weather data presentation, designed in Figma.',
+     // image: 'https://img.freepik.com/free-vector/weather-app-interface_23-2149853637.jpg?size=626&ext=jpg',
+    //  tags: ['Figma'],
+    //  github: 'https://github.com/AshenRuvinda/Weather-App-UI-Design',
+   // },
+   // {
+      //title: 'E-Commerce Mobile App Design',
+     // description: 'Mobile app UI/UX design using Adobe XD',
+     // extendedDescription: 'A modern and responsive UI/UX design for an e-commerce mobile app, featuring seamless navigation and engaging visuals, crafted with Adobe XD.',
+     // image: 'https://img.freepik.com/free-vector/online-shopping-concept-illustration_114360-1186.jpg?size=626&ext=jpg',
+     // tags: ['Adobe XD'],
+     // github: 'https://github.com/AshenRuvinda/E-Commerce-App-Design',
+   // },
+    //{
+    //  title: 'Portfolio Website Mockup',
+    //  description: 'Portfolio website UI design using Photoshop',
+    //  extendedDescription: 'A professional portfolio website mockup with a focus on clean aesthetics and user interaction, designed using Photoshop.',
+    //  image: 'https://img.freepik.com/free-vector/portfolio-management-abstract-concept-vector-illustration_335657-3892.jpg?size=626&ext=jpg',
+   //   tags: ['Photoshop'],
+    //  github: 'https://github.com/AshenRuvinda/Portfolio-UI-Mockup',
+   // },
   ];
 
   const getTagColor = (tag) => {
@@ -145,7 +169,10 @@ const Projects = () => {
       'Express.js': 'bg-gray-600 text-gray-100',
       'Node.js': 'bg-lime-600 text-lime-100',
       JWT: 'bg-red-600 text-red-100',
-      Authentication: 'bg-indigo-600 text-indigo-100'
+      Authentication: 'bg-indigo-600 text-indigo-100',
+      Figma: 'bg-purple-600 text-purple-100',
+      'Adobe XD': 'bg-pink-500 text-pink-100',
+      Photoshop: 'bg-blue-400 text-blue-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
@@ -170,7 +197,8 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl font-bold mb-2"
+            className="text-4xl font-bold mb-Measles outbreak in the DRC
+2"
             variants={fadeIn}
             initial="hidden"
             animate="visible"
@@ -216,6 +244,24 @@ const Projects = () => {
             >
               Mini Projects
               {activeCategory === 'mini' && (
+                <motion.div
+                  className="category-underline"
+                  layoutId="category-underline"
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                />
+              )}
+            </motion.button>
+            <motion.button
+              className={`category-btn ${activeCategory === 'uiux' ? 'active' : ''}`}
+              onClick={() => handleCategoryClick('uiux')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={activeCategory === 'uiux' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
+              transition={{ duration: 0.2 }}
+              aria-label="View UI/UX Designs"
+            >
+              UI/UX Designs
+              {activeCategory === 'uiux' && (
                 <motion.div
                   className="category-underline"
                   layoutId="category-underline"
@@ -456,6 +502,114 @@ const Projects = () => {
                   className="carousel-button right-0"
                   onClick={() => scroll('right', miniScrollRef)}
                   aria-label="Scroll mini projects carousel right"
+                >
+                  <i className="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* UI/UX Designs Carousel */}
+        <AnimatePresence>
+          {activeCategory === 'uiux' && (
+            <motion.div
+              key="uiux"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="relative">
+                <button
+                  className="carousel-button left-0"
+                  onClick={() => scroll('left', uiuxScrollRef)}
+                  aria-label="Scroll UI/UX designs carousel left"
+                >
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                <div
+                  className="carousel-container flex overflow-x-auto scroll-smooth"
+                  ref={uiuxScrollRef}
+                  role="group"
+                  aria-label="UI/UX design cards"
+                >
+                  {uiuxDesigns.map((design, index) => (
+                    <motion.div
+                      key={index}
+                      className="project-card w-[320px] mx-3"
+                      variants={fadeIn}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: index * 0.2 }}
+                      onHoverStart={() => setFlippedCard(`uiux-${index}`)}
+                      onHoverEnd={() => setFlippedCard(null)}
+                      onClick={() => setFlippedCard(flippedCard === `uiux-${index}` ? null : `uiux-${index}`)}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          className="project-item relative w-full h-full"
+                          variants={flip}
+                          initial="front"
+                          animate={flippedCard === `uiux-${index}` ? 'back' : 'front'}
+                          style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
+                        >
+                          {/* Front Side */}
+                          <motion.div
+                            className="front absolute w-full h-full flex flex-col"
+                            style={{ backfaceVisibility: 'hidden' }}
+                          >
+                            <div className="project-img mb-4">
+                              <img
+                                src={design.image}
+                                alt={design.title}
+                                className="rounded-lg w-full h-56 object-cover"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="project-content flex-grow">
+                              <h3 className="text-xl font-semibold mb-2">{design.title}</h3>
+                              <div className="project-tags flex flex-wrap gap-2 mb-4">
+                                {design.tags.map((tag, idx) => (
+                                  <span
+                                    key={idx}
+                                    className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                          {/* Back Side */}
+                          <motion.div
+                            className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
+                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                          >
+                            <h3 className="text-xl font-semibold mb-2">{design.title}</h3>
+                            <p className="mb-4 text-sm">{design.extendedDescription}</p>
+                            <div className="flex flex-wrap gap-3 justify-center">
+                              <a
+                                href={design.github}
+                                className="btn btn-primary btn-sm flex items-center"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <i className="fas fa-eye mr-2"></i> View Design
+                              </a>
+                            </div>
+                          </motion.div>
+                        </motion.div>
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+                </div>
+                <button
+                  className="carousel-button right-0"
+                  onClick={() => scroll('right', uiuxScrollRef)}
+                  aria-label="Scroll UI/UX designs carousel right"
                 >
                   <i className="fas fa-chevron-right"></i>
                 </button>
