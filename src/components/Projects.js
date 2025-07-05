@@ -120,7 +120,7 @@ const Projects = () => {
       description: "A mobile app with user registration and login using React Native, connected to a Node.js and MongoDB backend with JWT-based authentication.",
       extendedDescription: "React Native app implementing secure user registration and login, integrated with Node.js backend and MongoDB database using JWT for authentication.",
       image: "https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-4678.jpg?size=740&ext=jpg",
-      tags: ["React Native", "Node.js", "MongoDB", "JWT", , "Express.js"],
+      tags: ["React Native", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/AshenRuvinda/ReactNativeLoginAuth-miniproject"
     }
     
