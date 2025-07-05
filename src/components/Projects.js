@@ -112,9 +112,19 @@ const Projects = () => {
       description: "A MERN stack app with user registration, login, and JWT-based authentication, featuring a responsive UI with Tailwind CSS and MongoDB storage.",
       extendedDescription: "Built a full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
       image: "https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg?semt=ais_hybrid&w=740",
-      tags: ["MERN", "MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS", "Authentication"],
-      github: "https://github.com/AshenRuvinda/MernAuth-miniProject"
+      tags: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS"],
+      github: "https://github.com/AshenRuvinda/MernAuth-miniProject",
+    },
+    {
+      title: "React Native Login & Register Auth",
+      description: "A mobile app with user registration and login using React Native, connected to a Node.js and MongoDB backend with JWT-based authentication.",
+      extendedDescription: "React Native app implementing secure user registration and login, integrated with Node.js backend and MongoDB database using JWT for authentication.",
+      image: "https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-4678.jpg?size=740&ext=jpg",
+      tags: ["React Native", "Node.js", "MongoDB", "JWT", , "Express.js"],
+      github: "https://github.com/AshenRuvinda/ReactNativeLoginAuth-miniproject"
     }
+    
+    
   ];
 
   const getTagColor = (tag) => {
