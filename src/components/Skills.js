@@ -31,10 +31,10 @@ const Skills = () => {
       skills: [
         { name: 'JavaScript', level: 90, icon: 'fab fa-js' },
         { name: 'React', level: 85, icon: 'fab fa-react' },
-        { name: 'React Native', level: 80, icon: 'fab fa-react' },
+        { name: 'React Native', level: 65, icon: 'fab fa-react' },
         { name: 'HTML/CSS', level: 95, icon: 'fab fa-html5' },
-        { name: 'Java', level: 85, icon: 'fab fa-java' },
-        { name: 'Dart', level: 85, icon: 'fab fa-android' },
+        { name: 'Java', level: 75, icon: 'fab fa-java' },
+        { name: 'Dart', level: 80, icon: 'fab fa-android' },
       ],
     },
     {
@@ -42,10 +42,11 @@ const Skills = () => {
       icon: 'fas fa-server',
       skills: [
         { name: 'Python', level: 75, icon: 'fab fa-python' },
-        { name: 'SQL', level: 70, icon: 'fas fa-database' },
-        { name: 'PHP', level: 80, icon: 'fab fa-php' },
-        { name: 'Firebase', level: 85, icon: 'fas fa-fire' },
-        { name: 'NodeJS', level: 85, icon: 'fab fa-node-js' },
+        { name: 'SQL', level: 75, icon: 'fas fa-database' },
+        { name: 'PHP', level: 85, icon: 'fab fa-php' },
+        { name: 'Firebase', level: 80, icon: 'fas fa-fire' },
+        { name: 'NodeJS', level: 70, icon: 'fab fa-node-js' },
+        { name: 'MongoDB', level: 70, icon: 'fa fa-leaf' },
       ],
     },
     {
@@ -69,8 +70,8 @@ const Skills = () => {
       title: 'Version Control',
       icon: 'fas fa-code-branch',
       skills: [
-        { name: 'Git', level: 90, icon: 'fab fa-git' },
-        { name: 'GitHub', level: 85, icon: 'fab fa-github' },
+        { name: 'Git', level: 65, icon: 'fab fa-git' },
+        { name: 'GitHub', level: 80, icon: 'fab fa-github' },
         
       ],
     },
