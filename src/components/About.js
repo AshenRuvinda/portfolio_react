@@ -135,7 +135,7 @@ const About = () => {
                   <i className="fas fa-briefcase"></i> Hire Me
                 </Link>
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1L_Oapc_ugPqTkShoDWNmGE3JsHBLzvjS"
+                  href="https://drive.google.com/uc?export=download&id=1WTO7_vjrsB_8odfe5dBBhEDtOxAEbv2Y"
                   className="btn-outline"
                   aria-label="Download Ashen's CV"
                   target="_blank"
