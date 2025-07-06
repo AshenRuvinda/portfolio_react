@@ -115,12 +115,20 @@ const Projects = () => {
       github: "https://github.com/AshenRuvinda/MernAuth-miniProject",
     },
     {
-      title: "React Native Login & Register Auth",
+      title: "React Native Login & Registration Auth",
       description: "A mobile app with user registration and login using React Native, connected to a Node.js and MongoDB backend with JWT-based authentication.",
       extendedDescription: "React Native app implementing secure user registration and login, integrated with Node.js backend and MongoDB database using JWT for authentication.",
       image: "https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-4678.jpg?size=740&ext=jpg",
       tags: ["React Native", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/AshenRuvinda/ReactNativeLoginAuth-miniproject"
+    },
+    {
+      title: "MERN Web Applications For Data Sending & Showing",
+      description: "etc",
+      extendedDescription: "MERN web apps use MongoDB, React, and Node.js to send, store, and display data with dynamic, real-time user interaction.",
+      image: "https://www.differenzsystem.com/images/back-end-development/web-development.webp",
+      tags: ["React", "Node.js", "MongoDB"],
+      github: "https://github.com/AshenRuvinda/MERNgetpost-miniproject"
     }
   ];
 
