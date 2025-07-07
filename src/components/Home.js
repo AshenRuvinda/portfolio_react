@@ -116,7 +116,7 @@ const Home = () => {
     }
   };
 
-  // Split text for letter-by-letter animation
+  
   const helloText = "Hello, I'm".split('');
   const nameText = "Ashen Ruvinda".split('');
   const subtitleText = "I'm a ".split('');

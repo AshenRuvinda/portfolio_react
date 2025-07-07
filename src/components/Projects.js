@@ -134,29 +134,14 @@ const Projects = () => {
 
   const uiuxDesigns = [
     //{
-     // title: 'Weather App UI Design',
+     // title: 'UI Design',
     //  description: 'UI/UX design for a weather application created using Figma',
-     // extendedDescription: 'A clean and intuitive UI/UX design for a weather app, focusing on user-friendly navigation and visually appealing weather data presentation, designed in Figma.',
-     // image: 'https://img.freepik.com/free-vector/weather-app-interface_23-2149853637.jpg?size=626&ext=jpg',
+     // extendedDescription: 'A clean and intuitive UI/UX design ',
+     // image: '#',
     //  tags: ['Figma'],
-    //  github: 'https://github.com/AshenRuvinda/Weather-App-UI-Design',
+    //  github: '#',
    // },
-   // {
-      //title: 'E-Commerce Mobile App Design',
-     // description: 'Mobile app UI/UX design using Adobe XD',
-     // extendedDescription: 'A modern and responsive UI/UX design for an e-commerce mobile app, featuring seamless navigation and engaging visuals, crafted with Adobe XD.',
-     // image: 'https://img.freepik.com/free-vector/online-shopping-concept-illustration_114360-1186.jpg?size=626&ext=jpg',
-     // tags: ['Adobe XD'],
-     // github: 'https://github.com/AshenRuvinda/E-Commerce-App-Design',
-   // },
-    //{
-    //  title: 'Portfolio Website Mockup',
-    //  description: 'Portfolio website UI design using Photoshop',
-    //  extendedDescription: 'A professional portfolio website mockup with a focus on clean aesthetics and user interaction, designed using Photoshop.',
-    //  image: 'https://img.freepik.com/free-vector/portfolio-management-abstract-concept-vector-illustration_335657-3892.jpg?size=626&ext=jpg',
-   //   tags: ['Photoshop'],
-    //  github: 'https://github.com/AshenRuvinda/Portfolio-UI-Mockup',
-   // },
+   // 
   ];
 
   const getTagColor = (tag) => {
@@ -197,7 +182,7 @@ const Projects = () => {
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
-    setFlippedCard(null); // Reset flipped cards when switching categories
+    setFlippedCard(null); 
   };
 
   return (

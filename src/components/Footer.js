@@ -14,7 +14,7 @@ const Footer = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const currentYear = new Date().getFullYear() || 2025;
 
-  // Update time every minute
+
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(timer);
