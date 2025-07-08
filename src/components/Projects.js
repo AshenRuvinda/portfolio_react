@@ -21,6 +21,14 @@ const Projects = () => {
 
   const mainProjects = [
     {
+      title: 'Mini MCQ LMS',
+      description: '',
+      extendedDescription: 'A small LMS designed for teachers and students to interact with each other and discuss MCQ questions. It was built using the Mern Stack. There are small errors. Still under development.',
+      image: 'https://media.istockphoto.com/id/1451316016/photo/lms-learning-management-system-for-lesson-and-online-education-course-application-study-e.jpg?s=612x612&w=0&k=20&c=fRH0AanVP3IkjZtYNwJiyALkAvN3plLtrcPd1L2MrJo=',
+      tags: ['React', 'Express', 'MongoDB','Node.js'],
+      github: 'https://github.com/AshenRuvinda/MERN-MCQ-LMSminiproject',
+    },
+    {
       title: 'Weather App',
       description: 'Weather App built using Flutter and FireBase',
       extendedDescription: 'A mobile application providing real-time weather updates with a sleek UI, leveraging Firebase for data storage and Weather API for accurate forecasts.',
