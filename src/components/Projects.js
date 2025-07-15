@@ -21,6 +21,14 @@ const Projects = () => {
 
   const mainProjects = [
     {
+      title: 'Lock-Box Password and Card Details Wallet',
+      description: '',
+      extendedDescription: 'Password Wallet is a secure Next.js app using TypeScript, Tailwind CSS, and MongoDB to manage and store user passwords through a responsive, modern interface with scalable, full-stack architecture.',
+      image: 'https://pmecdn.protonweb.com/image-transformation/?s=c&image=images%2Ff_auto%2Cq_auto%2Fv1707559420%2Fwp-pme%2FAre-password-managers-safe_-blog%402x%2FAre-password-managers-safe_-blog%402x.png%3F_i%3DAA',
+      tags: ['Next.js', 'Tailwind', 'MongoDB','TypeScript'],
+      github: 'https://github.com/AshenRuvinda/Password-Wallet',
+    },
+    {
       title: 'Mini MCQ LMS',
       description: '',
       extendedDescription: 'A small LMS designed for teachers and students to interact with each other and discuss MCQ questions. It was built using the Mern Stack. There are small errors. Still under development.',
@@ -165,6 +173,7 @@ const Projects = () => {
       Css: 'bg-blue-600 text-blue-100',
       JavaScript: 'bg-yellow-600 text-yellow-100',
       Tailwind: 'bg-teal-500 text-teal-100',
+      'Tailwind CSS': 'bg-cyan-600 text-cyan-100',
       PHP: 'bg-indigo-500 text-indigo-100',
       MERN: 'bg-blue-700 text-blue-100',
       'Express.js': 'bg-gray-600 text-gray-100',
@@ -174,9 +183,11 @@ const Projects = () => {
       Figma: 'bg-purple-600 text-purple-100',
       'Adobe XD': 'bg-pink-500 text-pink-100',
       Photoshop: 'bg-blue-400 text-blue-100',
+      'Next.js': 'bg-black text-white',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
+  
 
   const scroll = (direction, ref) => {
     if (ref.current) {
