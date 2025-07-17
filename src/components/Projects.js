@@ -150,9 +150,9 @@ const Projects = () => {
       title: "NextJS Login Auth Form",
       description: "etc",
       extendedDescription: "A login authentication form designed to practice NextJS. Password encryption has also been done using Bcrypt with a secure login.",
-      image: "https://www.differenzsystem.com/images/back-end-development/web-development.webp",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn33FOolty9CbWrCyAeyyE1k1gWIjc2pSU9g&s",
       tags: ["Next.js", "Node.js", "MongoDB", "Tailwind"],
-      github: "https://github.com/AshenRuvinda/NextjsAuthminiprojecthttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn33FOolty9CbWrCyAeyyE1k1gWIjc2pSU9g&s"
+      github: "https://github.com/AshenRuvinda/NextjsAuthminiproject"
     }
   ];
 
