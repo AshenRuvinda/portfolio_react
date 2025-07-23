@@ -7,7 +7,8 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('main');
   const mainScrollRef = useRef(null);
   const miniScrollRef = useRef(null);
-  const uiuxScrollRef = useRef(null);
+  //const uiuxScrollRef = useRef(null);
+  const certScrollRef = useRef(null);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 50 },
@@ -25,17 +26,16 @@ const Projects = () => {
       description: '',
       extendedDescription: 'Weather Forecast Website created using the MERN Stack. Frontend & Backend deployed using Vercel and Render. Access below.',
       image: 'https://cdn.dribbble.com/userupload/18456569/file/original-7490c73afd13e8a2523fbe2c34f6853b.png?resize=400x0',
-      tags: ['React', 'Tailwind', 'MongoDB','Node.js','Weather API'], 
+      tags: ['React', 'Tailwind', 'MongoDB', 'Node.js', 'Weather API'], 
       github: 'https://github.com/AshenRuvinda/MERN-Weather-Forcast-web',
       website: 'https://weather-pro-web.vercel.app/'
-      
     },
     {
       title: 'Lock-Box Password and Card Details Wallet',
       description: '',
       extendedDescription: 'Password Wallet is a secure Next.js app using TypeScript, Tailwind CSS, and MongoDB to manage and store user passwords through a responsive, modern interface with scalable, full-stack architecture.',
       image: 'https://pmecdn.protonweb.com/image-transformation/?s=c&image=images%2Ff_auto%2Cq_auto%2Fv1707559420%2Fwp-pme%2FAre-password-managers-safe_-blog%402x%2FAre-password-managers-safe_-blog%402x.png%3F_i%3DAA',
-      tags: ['Next.js', 'Tailwind', 'MongoDB','TypeScript'],
+      tags: ['Next.js', 'Tailwind', 'MongoDB', 'TypeScript'],
       github: 'https://github.com/AshenRuvinda/Password-Wallet',
     },
     {
@@ -43,7 +43,7 @@ const Projects = () => {
       description: '',
       extendedDescription: 'A small LMS designed for teachers and students to interact with each other and discuss MCQ questions. It was built using the Mern Stack. There are small errors. Still under development.',
       image: 'https://media.istockphoto.com/id/1451316016/photo/lms-learning-management-system-for-lesson-and-online-education-course-application-study-e.jpg?s=612x612&w=0&k=20&c=fRH0AanVP3IkjZtYNwJiyALkAvN3plLtrcPd1L2MrJo=',
-      tags: ['React', 'Express', 'MongoDB','Node.js'],
+      tags: ['React', 'Express', 'MongoDB', 'Node.js'],
       github: 'https://github.com/AshenRuvinda/MERN-MCQ-LMSminiproject',
     },
     {
@@ -166,16 +166,27 @@ const Projects = () => {
     }
   ];
 
-  const uiuxDesigns = [
-    //{
-     // title: 'UI Design',
-    //  description: 'UI/UX design for a weather application created using Figma',
-     // extendedDescription: 'A clean and intuitive UI/UX design ',
-     // image: '#',
-    //  tags: ['Figma'],
-    //  github: '#',
-   // },
-   // 
+  //const uiuxDesigns = [
+    // {
+    //   title: 'UI Design',
+    //   description: 'UI/UX design for a weather application created using Figma',
+    //   extendedDescription: 'A clean and intuitive UI/UX design ',
+    //   image: '#',
+    //   tags: ['Figma'],
+    //   github: '#',
+    // },
+  //];
+
+  const certifications = [
+    {
+      title: 'Master Java Visually: A Complete A-Z Bootcamp for Beginners',
+      description: 'Certification in Full Stack Web Development from Coursera',
+      extendedDescription: 'I completed the Master Java Visually course by Harish Anbalagan on Udemy, covering all required video content.',
+      image: 'https://github.com/AshenRuvinda/ProjectImages/blob/master/Certifications/Master%20Java%20Visually.jpg?raw=true',
+      tags: ['Udemy', 'Java'],
+      link: 'https://drive.google.com/file/d/1QRAyq8WEwAUNYe1R83xAVMzwe4MomHE8/view?usp=sharing',
+    },
+    
   ];
 
   const getTagColor = (tag) => {
@@ -202,10 +213,16 @@ const Projects = () => {
       'Adobe XD': 'bg-pink-500 text-pink-100',
       Photoshop: 'bg-blue-400 text-blue-100',
       'Next.js': 'bg-black text-white',
+      Coursera: 'bg-blue-700 text-blue-100',
+      'Full Stack': 'bg-teal-600 text-teal-100',
+      'Web Development': 'bg-indigo-600 text-indigo-100',
+      Udemy: 'bg-purple-700 text-purple-100',
+      'Mobile Development': 'bg-green-700 text-green-100',
+      AWS: 'bg-orange-600 text-orange-100',
+      'Cloud Computing': 'bg-gray-500 text-gray-100',
     };
     return colors[tag] || 'bg-cyan-400 text-cyan-100';
   };
-  
 
   const scroll = (direction, ref) => {
     if (ref.current) {
@@ -219,7 +236,7 @@ const Projects = () => {
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
-    setFlippedCard(null); 
+    setFlippedCard(null);
   };
 
   return (
@@ -227,13 +244,12 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl font-bold mb-Measles outbreak in the DRC
-2"
+            className="text-4xl font-bold mb-2"
             variants={fadeIn}
             initial="hidden"
             animate="visible"
           >
-            My Projects
+            My Projects & Certifications
           </motion.h2>
           <motion.p
             className="text-lg text-gray-300"
@@ -242,7 +258,7 @@ const Projects = () => {
             animate="visible"
             transition={{ delay: 0.2 }}
           >
-            What I've been working on
+            What I've been working on and achieved
           </motion.p>
           <div className="category-selector flex justify-center mt-6 relative">
             <motion.button
@@ -281,17 +297,19 @@ const Projects = () => {
                 />
               )}
             </motion.button>
+            
+            
             <motion.button
-              className={`category-btn ${activeCategory === 'uiux' ? 'active' : ''}`}
-              onClick={() => handleCategoryClick('uiux')}
+              className={`category-btn ${activeCategory === 'certifications' ? 'active' : ''}`}
+              onClick={() => handleCategoryClick('certifications')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={activeCategory === 'uiux' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
+              animate={activeCategory === 'certifications' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
               transition={{ duration: 0.2 }}
-              aria-label="View UI/UX Designs"
+              aria-label="View Certifications"
             >
-              UI/UX Designs
-              {activeCategory === 'uiux' && (
+              Certifications
+              {activeCategory === 'certifications' && (
                 <motion.div
                   className="category-underline"
                   layoutId="category-underline"
@@ -540,11 +558,13 @@ const Projects = () => {
           )}
         </AnimatePresence>
 
-        {/* UI/UX Designs Carousel */}
+       
+
+        {/* Certifications Carousel */}
         <AnimatePresence>
-          {activeCategory === 'uiux' && (
+          {activeCategory === 'certifications' && (
             <motion.div
-              key="uiux"
+              key="certifications"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -553,18 +573,18 @@ const Projects = () => {
               <div className="relative">
                 <button
                   className="carousel-button left-0"
-                  onClick={() => scroll('left', uiuxScrollRef)}
-                  aria-label="Scroll UI/UX designs carousel left"
+                  onClick={() => scroll('left', certScrollRef)}
+                  aria-label="Scroll certifications carousel left"
                 >
                   <i className="fas fa-chevron-left"></i>
                 </button>
                 <div
                   className="carousel-container flex overflow-x-auto scroll-smooth"
-                  ref={uiuxScrollRef}
+                  ref={certScrollRef}
                   role="group"
-                  aria-label="UI/UX design cards"
+                  aria-label="Certification cards"
                 >
-                  {uiuxDesigns.map((design, index) => (
+                  {certifications.map((cert, index) => (
                     <motion.div
                       key={index}
                       className="project-card w-[320px] mx-3"
@@ -572,9 +592,9 @@ const Projects = () => {
                       initial="hidden"
                       animate="visible"
                       transition={{ delay: index * 0.2 }}
-                      onHoverStart={() => setFlippedCard(`uiux-${index}`)}
+                      onHoverStart={() => setFlippedCard(`cert-${index}`)}
                       onHoverEnd={() => setFlippedCard(null)}
-                      onClick={() => setFlippedCard(flippedCard === `uiux-${index}` ? null : `uiux-${index}`)}
+                      onClick={() => setFlippedCard(flippedCard === `cert-${index}` ? null : `cert-${index}`)}
                       whileHover={{ scale: 1.05 }}
                     >
                       <AnimatePresence mode="wait">
@@ -582,7 +602,7 @@ const Projects = () => {
                           className="project-item relative w-full h-full"
                           variants={flip}
                           initial="front"
-                          animate={flippedCard === `uiux-${index}` ? 'back' : 'front'}
+                          animate={flippedCard === `cert-${index}` ? 'back' : 'front'}
                           style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
                         >
                           {/* Front Side */}
@@ -592,16 +612,16 @@ const Projects = () => {
                           >
                             <div className="project-img mb-4">
                               <img
-                                src={design.image}
-                                alt={design.title}
+                                src={cert.image}
+                                alt={cert.title}
                                 className="rounded-lg w-full h-56 object-cover"
                                 loading="lazy"
                               />
                             </div>
                             <div className="project-content flex-grow">
-                              <h3 className="text-xl font-semibold mb-2">{design.title}</h3>
+                              <h3 className="text-xl font-semibold mb-2">{cert.title}</h3>
                               <div className="project-tags flex flex-wrap gap-2 mb-4">
-                                {design.tags.map((tag, idx) => (
+                                {cert.tags.map((tag, idx) => (
                                   <span
                                     key={idx}
                                     className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
@@ -617,17 +637,17 @@ const Projects = () => {
                             className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
                             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                           >
-                            <h3 className="text-xl font-semibold mb-2">{design.title}</h3>
-                            <p className="mb-4 text-sm">{design.extendedDescription}</p>
+                            <h3 className="text-xl font-semibold mb-2">{cert.title}</h3>
+                            <p className="mb-4 text-sm">{cert.extendedDescription}</p>
                             <div className="flex flex-wrap gap-3 justify-center">
                               <a
-                                href={design.github}
+                                href={cert.link}
                                 className="btn btn-primary btn-sm flex items-center"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <i className="fas fa-eye mr-2"></i> View Design
+                                <i className="fas fa-eye mr-2"></i> View Certificate
                               </a>
                             </div>
                           </motion.div>
@@ -638,8 +658,8 @@ const Projects = () => {
                 </div>
                 <button
                   className="carousel-button right-0"
-                  onClick={() => scroll('right', uiuxScrollRef)}
-                  aria-label="Scroll UI/UX designs carousel right"
+                  onClick={() => scroll('right', certScrollRef)}
+                  aria-label="Scroll certifications carousel right"
                 >
                   <i className="fas fa-chevron-right"></i>
                 </button>
