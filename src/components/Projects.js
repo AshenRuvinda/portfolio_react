@@ -21,6 +21,16 @@ const Projects = () => {
 
   const mainProjects = [
     {
+      title: 'Weather-Pro',
+      description: '',
+      extendedDescription: 'Weather Forecast Website created using the MERN Stack. Frontend & Backend deployed using Vercel and Render. Access below.',
+      image: 'https://cdn.dribbble.com/userupload/18456569/file/original-7490c73afd13e8a2523fbe2c34f6853b.png?resize=400x0',
+      tags: ['React', 'Tailwind', 'MongoDB','Node.js','Weather API'], 
+      github: 'https://github.com/AshenRuvinda/MERN-Weather-Forcast-web',
+      website: 'https://weather-pro-web.vercel.app/'
+      
+    },
+    {
       title: 'Lock-Box Password and Card Details Wallet',
       description: '',
       extendedDescription: 'Password Wallet is a secure Next.js app using TypeScript, Tailwind CSS, and MongoDB to manage and store user passwords through a responsive, modern interface with scalable, full-stack architecture.',
