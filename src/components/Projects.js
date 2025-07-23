@@ -308,7 +308,7 @@ const Projects = () => {
               transition={{ duration: 0.2 }}
               aria-label="View Certifications"
             >
-              Certifications
+              Certificates
               {activeCategory === 'certifications' && (
                 <motion.div
                   className="category-underline"
