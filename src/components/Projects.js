@@ -22,6 +22,14 @@ const Projects = () => {
 
   const mainProjects = [
     {
+      title: 'Task Flow-Advanced To-Do Application',
+      description: '',
+      extendedDescription: 'This is an Advanced To do application that I created using the Mern Stack. It is designed with secure login features along with User Profile Management and works with a NodeJs Backend and Mongodb database.',
+      image: 'https://bordio.com/wp-content/themes/understrap/images/to-do-list/to-do-list-board-xl-1x.webp',
+      tags: ['React', 'Tailwind', 'MongoDB', 'Node.js', 'Express'], 
+      github: 'https://github.com/AshenRuvinda/MERN-TODOapp',
+    },
+    {
       title: 'Weather-Pro',
       description: '',
       extendedDescription: 'Weather Forecast Website created using the MERN Stack. Frontend & Backend deployed using Vercel and Render. Access below.',
