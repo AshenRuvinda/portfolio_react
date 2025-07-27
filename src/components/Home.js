@@ -59,7 +59,7 @@ const Home = () => {
   const socialLinks = [
     { icon: 'fab fa-github', href: 'https://github.com/AshenRuvinda', label: 'GitHub' },
     { icon: 'fab fa-linkedin', href: 'https://www.linkedin.com/in/ashen-ruvinda-929b83345', label: 'LinkedIn' },
-    { icon: 'fab fa-twitter', href: 'https://twitter.com', label: 'Twitter' },
+    { icon: 'fab fa-whatsapp', href: 'https://wa.me/0761511231', label: 'Whatsapp' },
   ];
 
   const floatingElements = [
