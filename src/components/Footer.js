@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion} from 'framer-motion';
 import { Link } from 'react-scroll';
 import BackToTop from './BackToTop';
 import './Footer.css';
