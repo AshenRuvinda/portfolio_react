@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Loader2, TestTube } from 'lucide-react';
+import { Bot, X, Send, Loader2, TestTube } from 'lucide-react';
+import './chatbot.css';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -180,100 +181,99 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
-      {/* Chat Icon */}
+    <div className="chatbot-container">
+      {/* Enhanced AI Bot Icon */}
       <div 
-        className={`w-14 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-all duration-300 transform hover:scale-110 ${
-          isOpen ? 'rotate-180' : ''
-        }`}
+        className={`chatbot-icon ${isOpen ? 'open' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
-          <X className="text-white w-6 h-6" />
+          <X className="w-6 h-6 text-white" />
         ) : (
-          <MessageCircle className="text-white w-6 h-6" />
+          <Bot className="w-7 h-7 text-white" />
         )}
       </div>
 
-      {/* Chat Window */}
+      {/* Enhanced Chat Window */}
       {isOpen && (
-        <div className="absolute bottom-20 left-0 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col border border-gray-200 overflow-hidden transform transition-all duration-300 ease-out">
-          {/* Header */}
-          <div className="flex justify-between items-center p-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-            <div>
-              <h4 className="font-semibold text-lg">Ashen's AI Chatbot</h4>
-              <p className="text-sm opacity-90">Powered by Gemini</p>
-            </div>
-            <div className="flex items-center space-x-3">
-              <button 
-                onClick={testConnection}
-                className="text-white hover:text-gray-200 transition-colors p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
-                title="Test API Connection"
-              >
-                <TestTube className="w-4 h-4" />
-              </button>
+        <div className="chatbot-popup">
+          {/* Modern Header */}
+          <div className="chatbot-header">
+            <div className="header-content">
+              <div className="header-info">
+                <h4>Ashen's AI Assistant</h4>
+                <p>Powered by Gemini AI</p>
+              </div>
+              <div className="header-actions">
+                <button 
+                  onClick={testConnection}
+                  className="header-btn"
+                  title="Test API Connection"
+                >
+                  <TestTube />
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="header-btn"
+                  title="Close Chat"
+                >
+                  <X />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Chat Body */}
+          {/* Enhanced Chat Body with Fixed Height and Scroll */}
           <div 
             ref={chatBodyRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+            className="chatbot-body"
           >
             {messages.map((msg, idx) => (
-              <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs px-4 py-3 rounded-2xl text-sm whitespace-pre-wrap shadow-sm ${
-                  msg.sender === 'user' 
-                    ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-br-md' 
-                    : 'bg-white text-gray-800 border border-gray-200 rounded-bl-md'
-                }`}>
+              <div key={idx} className={`message-container ${msg.sender}`}>
+                <div className={`chat-message ${msg.sender}`}>
                   {msg.text}
                 </div>
               </div>
             ))}
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white text-gray-800 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm border border-gray-200">
-                  <div className="flex items-center space-x-3">
-                    <Loader2 className="w-4 h-4 animate-spin text-blue-500" />
-                    <span className="text-sm text-black">ChatBot is thinking...</span>
-                  </div>
+              <div className="loading-container">
+                <div className="loading-message">
+                  <Loader2 className="loading-spinner" />
+                  <span className="loading-text">AI is thinking...</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Footer */}
-          <div className="p-4 border-t bg-white">
-            <div className="flex space-x-3 mb-3">
+          {/* Enhanced Footer */}
+          <div className="chatbot-footer">
+            <div className="input-container">
               <input
                 type="text"
-                placeholder="Ask Chatbot anything..."
+                placeholder="Type your message..."
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={isLoading}
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 text-sm bg-gray-50 focus:bg-white transition-colors text-black"
+                className="chat-input"
               />
               <button 
                 onClick={handleSend} 
                 disabled={isLoading || !input.trim()}
-                className="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:from-blue-600 hover:to-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md"
+                className="send-btn"
               >
                 {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="loading-spinner" />
                 ) : (
-                  <Send className="w-4 h-4" />
+                  <Send />
                 )}
               </button>
             </div>
             
-            <div className="flex items-center justify-center space-x-2">
-              <div className={`w-2 h-2 rounded-full ${
-                process.env.REACT_APP_GEMINI_API_KEY ? 'bg-green-500' : 'bg-red-500'
-              }`}></div>
-              <span className="text-xs text-gray-500">
-                {process.env.REACT_APP_GEMINI_API_KEY ? 'API Key Connected' : 'No API Key'}
+            <div className="status-indicator">
+              <div className={`status-dot ${process.env.REACT_APP_GEMINI_API_KEY ? 'connected' : 'disconnected'}`}></div>
+              <span className="status-text">
+                {process.env.REACT_APP_GEMINI_API_KEY ? 'API Connected' : 'API Disconnected'}
               </span>
             </div>
           </div>
