@@ -22,6 +22,14 @@ const Projects = () => {
 
   const mainProjects = [
     {
+      title: 'Inventory Management System + POS System',
+      description: '',
+      extendedDescription: 'A MERN Stack Inventory Management + POS system with role-based login, real-time database synchronization, stock tracking, cashier account management, and a clean Tailwind CSS interface for smooth business operations.',
+      image: 'https://www.tsiservice.com/wp-content/uploads/2022/05/TSI-POS-Systems-header-1000x500.jpeg',
+      tags: ['React', 'Tailwind', 'MongoDB', 'Node.js', 'Express'], 
+      github: 'https://github.com/AshenRuvinda/MERN-POS',
+    },
+    {
       title: 'Task Flow-Advanced To-Do Application',
       description: '',
       extendedDescription: 'This is an Advanced To do application that I created using the Mern Stack. It is designed with secure login features along with User Profile Management and works with a NodeJs Backend and Mongodb database.',
