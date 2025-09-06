@@ -124,7 +124,7 @@ const Footer = () => {
     },
     { 
       icon: 'fas fa-phone', 
-      text: '+94 77 123 4567', 
+      text: '+94 76 151 1231', 
       href: 'tel:+94761511231', 
       label: 'Phone' 
     },
