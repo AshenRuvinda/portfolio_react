@@ -8,10 +8,8 @@
   }
   
   .dynamic-island {
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 1);
     border: 1px solid #374151;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
     overflow: hidden;
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -30,7 +28,7 @@
   
   .dynamic-island.expanded {
     width: 22rem;
-    height: 28rem;
+    height: 32rem;
     border-radius: 1.5rem;
     cursor: default;
   }
@@ -54,13 +52,14 @@
   .wave-animation {
     display: flex;
     gap: 0.125rem;
+    align-items: flex-end;
   }
   
   .wave-bar {
     width: 0.125rem;
     background: #10b981;
     border-radius: 9999px;
-    animation: wave 1s ease-in-out infinite;
+    animation: wave 1.2s ease-in-out infinite;
   }
   
   .wave-bar-1 {
@@ -78,13 +77,18 @@
     animation-delay: 0.2s;
   }
   
+  .wave-bar-4 {
+    height: 0.6rem;
+    animation-delay: 0.3s;
+  }
+  
   @keyframes wave {
     0%, 100% {
-      transform: scaleY(0.5);
-      opacity: 0.7;
+      height: 0.5rem;
+      opacity: 0.4;
     }
     50% {
-      transform: scaleY(1);
+      height: 1rem;
       opacity: 1;
     }
   }
@@ -298,88 +302,42 @@
     height: 1.5rem;
   }
   
-  /* Volume Section */
-  .volume-section {
+  /* Mute Section */
+  .mute-section {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
     flex-shrink: 0;
   }
   
-  .volume-btn {
-    background: none;
-    border: none;
+  .mute-btn {
+    background: #1f2937;
+    border: 1px solid #374151;
     cursor: pointer;
     color: #9ca3af;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 50%;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  .volume-btn:hover {
+  .mute-btn:hover {
     color: white;
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  .volume-btn svg {
-    width: 1.1rem;
-    height: 1.1rem;
-  }
-  
-  /* Volume Slider */
-  .volume-slider {
-    flex: 1;
-    height: 0.3rem;
     background: #374151;
-    border-radius: 9999px;
-    appearance: none;
-    cursor: pointer;
-    outline: none;
+    transform: scale(1.05);
   }
   
-  .volume-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 1.1rem;
-    height: 1.1rem;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .volume-slider::-moz-range-thumb {
-    width: 1.1rem;
-    height: 1.1rem;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .volume-slider::-ms-thumb {
-    width: 1.1rem;
-    height: 1.1rem;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  .mute-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
   
   /* Focus States */
   .control-btn:focus,
-  .volume-btn:focus,
+  .mute-btn:focus,
   .close-btn:focus {
-    outline: 2px solid #60a5fa;
-    outline-offset: 2px;
-  }
-  
-  .volume-slider:focus {
     outline: 2px solid #60a5fa;
     outline-offset: 2px;
   }
@@ -395,8 +353,7 @@
     
     .dynamic-island.expanded {
       width: 20rem;
-      height: 26rem;
-      /* Position expanded state from bottom */
+      height: 30rem;
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -437,27 +394,25 @@
     .control-btn.play-pause {
       padding: 0.875rem;
     }
+  
+    .mute-btn {
+      padding: 0.625rem;
+    }
   }
   
-  @media (max-width: 480px) {
-    .music-player-container {
-      bottom: 0.75rem;
-    }
-    
+  @media (max-width: 640px) {
     .dynamic-island.collapsed {
-      width: 8rem;
-      height: 2rem;
+      width: 7rem;
+      height: 1.75rem;
     }
     
     .dynamic-island.collapsed:hover {
-      width: 10rem;
+      width: 8.5rem;
     }
     
     .dynamic-island.expanded {
       width: 18rem;
-      height: 24rem;
-      /* Ensure it stays at bottom on small screens */
-      bottom: 0;
+      height: 28rem;
     }
     
     .expanded-content {
@@ -466,8 +421,8 @@
     }
     
     .album-art-container {
-      width: 8rem;
-      height: 8rem;
+      width: 9rem;
+      height: 9rem;
     }
     
     .album-placeholder svg {
@@ -481,10 +436,6 @@
     
     .song-artist {
       font-size: 0.8rem;
-    }
-    
-    .controls-section {
-      padding: 0;
     }
     
     .control-btn {
@@ -509,30 +460,35 @@
       font-size: 0.7rem;
       max-width: 3.5rem;
     }
-    
-    .volume-section {
-      gap: 0.75rem;
+  
+    .mute-btn {
+      padding: 0.5rem;
+    }
+  
+    .mute-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
     }
   }
   
-  /* Very small screens - adjust for better usability */
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     .music-player-container {
-      bottom: 0.5rem;
+      bottom: 0.75rem;
     }
     
     .dynamic-island.collapsed {
-      width: 7rem;
-      height: 1.75rem;
+      width: 6.5rem;
+      height: 1.5rem;
     }
     
     .dynamic-island.collapsed:hover {
-      width: 8.5rem;
+      width: 8rem;
     }
     
     .dynamic-island.expanded {
       width: 16rem;
-      height: 22rem;
+      height: 26rem;
+      bottom: 0;
     }
     
     .expanded-content {
@@ -541,10 +497,8 @@
     }
     
     .album-art-container {
-      width: 7rem;
-      height: 7rem;
-      aspect-ratio: 1 / 1;
-      flex-shrink: 0;
+      width: 8rem;
+      height: 8rem;
     }
     
     .album-placeholder svg {
@@ -581,10 +535,70 @@
       width: 1.125rem;
       height: 1.125rem;
     }
-    
-    .volume-btn svg {
+  
+    .mute-btn {
+      padding: 0.4rem;
+    }
+  
+    .mute-btn svg {
       width: 1rem;
       height: 1rem;
+    }
+  
+    .collapsed-text {
+      max-width: 3rem;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .music-player-container {
+      bottom: 0.5rem;
+    }
+    
+    .dynamic-island.collapsed {
+      width: 6rem;
+      height: 1.5rem;
+    }
+    
+    .dynamic-island.collapsed:hover {
+      width: 7.5rem;
+    }
+    
+    .dynamic-island.expanded {
+      width: 15rem;
+      height: 24rem;
+    }
+    
+    .expanded-content {
+      padding: 0.75rem;
+      gap: 0.5rem;
+    }
+    
+    .album-art-container {
+      width: 7rem;
+      height: 7rem;
+    }
+    
+    .album-placeholder svg {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .song-title {
+      font-size: 0.85rem;
+    }
+    
+    .song-artist {
+      font-size: 0.7rem;
+    }
+    
+    .progress-time {
+      font-size: 0.65rem;
+    }
+  
+    .collapsed-text {
+      font-size: 0.65rem;
+      max-width: 2.5rem;
     }
   }
   

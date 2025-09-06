@@ -123,14 +123,6 @@ const DynamicMusicPlayer = () => {
     setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (e) => {
-    const newVolume = e.target.value / 100;
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
-  };
-
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
@@ -161,6 +153,7 @@ const DynamicMusicPlayer = () => {
                   <div className="wave-bar wave-bar-1"></div>
                   <div className="wave-bar wave-bar-2"></div>
                   <div className="wave-bar wave-bar-3"></div>
+                  <div className="wave-bar wave-bar-4"></div>
                 </div>
               )}
               <span className="collapsed-text">
@@ -283,28 +276,15 @@ const DynamicMusicPlayer = () => {
               </button>
             </div>
 
-            {/* Volume Control */}
-            <div className="volume-section">
+            {/* Mute Button - Bottom Center */}
+            <div className="mute-section">
               <button
                 onClick={toggleMute}
-                className="volume-btn"
+                className="mute-btn"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
-                {isMuted || volume === 0 ? <VolumeX /> : <Volume2 />}
+                {isMuted ? <VolumeX /> : <Volume2 />}
               </button>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                step="1"
-                value={isMuted ? 0 : Math.round(volume * 100)}
-                onChange={handleVolumeChange}
-                className="volume-slider"
-                title={`Volume: ${Math.round(volume * 100)}%`}
-              />
-              <span className="volume-text">
-                {isMuted ? '0%' : `${Math.round(volume * 100)}%`}
-              </span>
             </div>
           </div>
         )}
