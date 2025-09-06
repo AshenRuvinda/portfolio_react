@@ -28,12 +28,11 @@ const DynamicMusicPlayer = () => {
   // Sample songs - replace with your local music files
   const songs = [
     {
-      title: "Lose My Mind",
-      artist: "Don Toliver feat. Doja Cat",
-      src: "/music/song1.mp3", // Place your music files in public/music/
-      cover: "/images/album1.jpg" // Place album covers in public/images/
-    },
-    
+        title: "Lose My Mind",
+        artist: "Don Toliver feat. Doja Cat",
+        src: "/music/song1.mp3", // Place your music files in public/music/
+        cover: "/images/album1.jpg" // Place album covers in public/images/
+      },
   ];
 
   const currentSong = songs[currentSongIndex];
@@ -196,13 +195,24 @@ const DynamicMusicPlayer = () => {
                     src={currentSong.cover} 
                     alt={currentSong.title}
                     className="album-art"
+                    onLoad={(e) => {
+                      // Hide placeholder when image loads successfully
+                      const placeholder = e.target.parentElement.querySelector('.album-placeholder');
+                      if (placeholder) {
+                        placeholder.style.display = 'none';
+                      }
+                    }}
                     onError={(e) => {
+                      // Show placeholder when image fails to load
                       e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
+                      const placeholder = e.target.parentElement.querySelector('.album-placeholder');
+                      if (placeholder) {
+                        placeholder.style.display = 'flex';
+                      }
                     }}
                   />
                 ) : null}
-                <div className="album-placeholder">
+                <div className="album-placeholder" style={{display: currentSong.cover ? 'none' : 'flex'}}>
                   <Music />
                 </div>
               </div>
