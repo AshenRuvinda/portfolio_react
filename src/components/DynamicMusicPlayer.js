@@ -33,6 +33,18 @@ const DynamicMusicPlayer = () => {
         src: "/music/song1.mp3", // Place your music files in public/music/
         cover: "/images/album1.jpg" // Place album covers in public/images/
       },
+      {
+        title: "ANDROMEDA - MONTAGEM COMA",
+        artist: "Unknown",
+        src: "/music/song2.mp3", 
+        cover: "/images/album2.jpg" 
+      },
+      {
+        title: "I Ain’t Worried",
+        artist: "OneRepublic",
+        src: "/music/song3.mp3", 
+        cover: "/images/album3.jpg"
+      }
   ];
 
   const currentSong = songs[currentSongIndex];
