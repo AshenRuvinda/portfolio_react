@@ -123,6 +123,14 @@ const DynamicMusicPlayer = () => {
     setCurrentTime(newTime);
   };
 
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value / 100;
+    setVolume(newVolume);
+    if (isMuted && newVolume > 0) {
+      setIsMuted(false);
+    }
+  };
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
@@ -276,14 +284,13 @@ const DynamicMusicPlayer = () => {
               </button>
             </div>
 
-            {/* Mute Button - Bottom Center */}
+            {/* Mute Control */}
             <div className="mute-section">
               <button
                 onClick={toggleMute}
                 className="mute-btn"
-                title={isMuted ? 'Unmute' : 'Mute'}
               >
-                {isMuted ? <VolumeX /> : <Volume2 />}
+                {isMuted || volume === 0 ? <VolumeX /> : <Volume2 />}
               </button>
             </div>
           </div>

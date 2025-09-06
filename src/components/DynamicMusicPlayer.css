@@ -600,7 +600,76 @@
       font-size: 0.65rem;
       max-width: 2.5rem;
     }
+  
+    /* Volume Section */
+.volume-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
+  
+  .volume-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: color 0.3s ease;
+  }
+  
+  .volume-btn:hover {
+    color: white;
+  }
+  
+  .volume-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  /* Volume Slider */
+  .volume-slider {
+    flex: 1;
+    height: 0.25rem;
+    background: #374151;
+    border-radius: 9999px;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .volume-slider::-ms-thumb {
+    width: 1rem;
+    height: 1rem;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  }
+
   
   /* Additional fixes for better visibility */
   .expanded-content > * {
