@@ -9,7 +9,8 @@ import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Chatbot from './components/Chatbot'; // ✅ Import your chatbot
+import Chatbot from './components/Chatbot';
+import DynamicMusicPlayer from './components/DynamicMusicPlayer'; // ✅ Import Dynamic Music Player
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -38,7 +39,8 @@ const App = () => {
       <Resume />
       <Contact />
       <Footer />
-      <Chatbot /> {/* ✅ Show chatbot after splash screen */}
+      <Chatbot /> {/* ✅ Chatbot component */}
+      <DynamicMusicPlayer /> {/* ✅ Dynamic Music Player component */}
     </div>
   );
 };
