@@ -288,6 +288,7 @@ const DynamicMusicPlayer = () => {
               <button
                 onClick={toggleMute}
                 className="volume-btn"
+                title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted || volume === 0 ? <VolumeX /> : <Volume2 />}
               </button>
@@ -295,10 +296,15 @@ const DynamicMusicPlayer = () => {
                 type="range"
                 min="0"
                 max="100"
-                value={isMuted ? 0 : volume * 100}
+                step="1"
+                value={isMuted ? 0 : Math.round(volume * 100)}
                 onChange={handleVolumeChange}
                 className="volume-slider"
+                title={`Volume: ${Math.round(volume * 100)}%`}
               />
+              <span className="volume-text">
+                {isMuted ? '0%' : `${Math.round(volume * 100)}%`}
+              </span>
             </div>
           </div>
         )}
