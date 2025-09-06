@@ -1,23 +1,44 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Projects.css';
 
 const Projects = () => {
   const [flippedCard, setFlippedCard] = useState(null);
   const [activeCategory, setActiveCategory] = useState('main');
-  const mainScrollRef = useRef(null);
-  const miniScrollRef = useRef(null);
-  //const uiuxScrollRef = useRef(null);
-  const certScrollRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState({ main: 0, mini: 0, certifications: 0 });
+  const [shuffleKey, setShuffleKey] = useState(0);
 
-  const fadeIn = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
-  const flip = {
-    front: { rotateY: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } },
-    back: { rotateY: 180, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } },
+  const stackVariants = {
+    hidden: { 
+      opacity: 0, 
+      rotateZ: Math.random() * 20 - 10,
+      x: Math.random() * 100 - 50,
+      y: Math.random() * 100 - 50,
+      scale: 0.8
+    },
+    visible: (i) => ({
+      opacity: i === 0 ? 1 : 0.7 - (i * 0.15),
+      rotateZ: i * 2 + (Math.random() * 10 - 5),
+      x: i * 8 + (Math.random() * 20 - 10),
+      y: i * 6 + (Math.random() * 15 - 7.5),
+      scale: 1 - (i * 0.05),
+      zIndex: 10 - i,
+      transition: {
+        duration: 0.6,
+        delay: i * 0.1,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }),
+    exit: {
+      opacity: 0,
+      rotateZ: Math.random() * 40 - 20,
+      x: Math.random() * 200 - 100,
+      y: -100,
+      scale: 0.8,
+      transition: { duration: 0.4 }
+    }
   };
 
   const mainProjects = [
@@ -106,7 +127,7 @@ const Projects = () => {
     {
       title: 'Project HillTop-E Commerce Web (ongoing-project)',
       description: '',
-      extendedDescription: 'Redesigning HillTop Clothing’s website with React to improve UI/UX, performance, and support future e-commerce growth and scalability.',
+      extendedDescription: 'Redesigning HillTop Clothing website with React to improve UI/UX, performance, and support future e-commerce growth and scalability.',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTphzn-B0t2cQzZgAvA2FXZkhTEkayMw26UqA&s',
       tags: ['React', 'MongoDB'],
       github: 'https://github.com/AshenRuvinda/Project-HillTop',
@@ -154,14 +175,6 @@ const Projects = () => {
       extendedDescription: "Built a's full-stack MERN auth app with JWT, user registration/login, protected routes, Tailwind UI, admin user view, client-side validation, and MongoDB Compass support.",
       image: "https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg?semt=ais_hybrid&w=740",
       tags: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Tailwind CSS"],
-      github: "https://github.com/AshenRuvinda/MernAuth-miniProject",
-    },
-    {
-      title: "React Native Login & Registration Auth",
-      description: "A mobile app with user registration and login using React Native, connected to a Node.js and MongoDB backend with JWT-based authentication.",
-      extendedDescription: "React Native app implementing secure user registration and login, integrated with Node.js backend and MongoDB database using JWT for authentication.",
-      image: "https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-4678.jpg?size=740&ext=jpg",
-      tags: ["React Native", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/AshenRuvinda/ReactNativeLoginAuth-miniproject"
     },
     {
@@ -182,17 +195,6 @@ const Projects = () => {
     }
   ];
 
-  //const uiuxDesigns = [
-    // {
-    //   title: 'UI Design',
-    //   description: 'UI/UX design for a weather application created using Figma',
-    //   extendedDescription: 'A clean and intuitive UI/UX design ',
-    //   image: '#',
-    //   tags: ['Figma'],
-    //   github: '#',
-    // },
-  //];
-
   const certifications = [
     {
       title: 'Master Java Visually: A Complete A-Z Bootcamp for Beginners',
@@ -202,487 +204,295 @@ const Projects = () => {
       tags: ['Udemy', 'Java'],
       link: 'https://drive.google.com/file/d/1QRAyq8WEwAUNYe1R83xAVMzwe4MomHE8/view?usp=sharing',
     },
-    
   ];
 
-  const getTagColor = (tag) => {
-    const colors = {
-      Flutter: 'bg-blue-500 text-blue-100',
-      Firebase: 'bg-orange-500 text-orange-100',
-      'Weather API': 'bg-green-500 text-green-100',
-      Python: 'bg-yellow-500 text-yellow-100',
-      React: 'bg-emerald-500 text-emerald-100',
-      SQL: 'bg-purple-500 text-purple-100',
-      MongoDB: 'bg-green-600 text-green-100',
-      Html: 'bg-red-500 text-red-100',
-      Css: 'bg-blue-600 text-blue-100',
-      JavaScript: 'bg-yellow-600 text-yellow-100',
-      Tailwind: 'bg-teal-500 text-teal-100',
-      'Tailwind CSS': 'bg-cyan-600 text-cyan-100',
-      PHP: 'bg-indigo-500 text-indigo-100',
-      MERN: 'bg-blue-700 text-blue-100',
-      'Express.js': 'bg-gray-600 text-gray-100',
-      'Node.js': 'bg-lime-600 text-lime-100',
-      JWT: 'bg-red-600 text-red-100',
-      Authentication: 'bg-indigo-600 text-indigo-100',
-      Figma: 'bg-purple-600 text-purple-100',
-      'Adobe XD': 'bg-pink-500 text-pink-100',
-      Photoshop: 'bg-blue-400 text-blue-100',
-      'Next.js': 'bg-black text-white',
-      Coursera: 'bg-blue-700 text-blue-100',
-      'Full Stack': 'bg-teal-600 text-teal-100',
-      'Web Development': 'bg-indigo-600 text-indigo-100',
-      Udemy: 'bg-purple-700 text-purple-100',
-      'Mobile Development': 'bg-green-700 text-green-100',
-      AWS: 'bg-orange-600 text-orange-100',
-      'Cloud Computing': 'bg-gray-500 text-gray-100',
+  const getTagClass = (tag) => {
+    const tagMap = {
+      'Flutter': 'tag-flutter',
+      'Firebase': 'tag-firebase',
+      'Weather API': 'tag-weather-api',
+      'Python': 'tag-python',
+      'React': 'tag-react',
+      'SQL': 'tag-sql',
+      'MongoDB': 'tag-mongodb',
+      'Html': 'tag-html',
+      'Css': 'tag-css',
+      'JavaScript': 'tag-javascript',
+      'Tailwind': 'tag-tailwind',
+      'Tailwind CSS': 'tag-tailwind-css',
+      'PHP': 'tag-php',
+      'MERN': 'tag-mern',
+      'Express.js': 'tag-express-js',
+      'Node.js': 'tag-node-js',
+      'JWT': 'tag-jwt',
+      'Authentication': 'tag-authentication',
+      'Figma': 'tag-figma',
+      'Adobe XD': 'tag-adobe-xd',
+      'Photoshop': 'tag-photoshop',
+      'Next.js': 'tag-next-js',
+      'Coursera': 'tag-coursera',
+      'Full Stack': 'tag-full-stack',
+      'Web Development': 'tag-web-development',
+      'Udemy': 'tag-udemy',
+      'Mobile Development': 'tag-mobile-development',
+      'AWS': 'tag-aws',
+      'Cloud Computing': 'tag-cloud-computing',
+      'TypeScript': 'tag-typescript',
+      'Express': 'tag-express-js',
+      'Java': 'tag-java',
+      'React Native': 'tag-react-native'
     };
-    return colors[tag] || 'bg-cyan-400 text-cyan-100';
+    return tagMap[tag] || 'tag-default';
   };
 
-  const scroll = (direction, ref) => {
-    if (ref.current) {
-      const scrollAmount = ref.current.offsetWidth * 0.8;
-      ref.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
+  const getCurrentProjects = () => {
+    switch (activeCategory) {
+      case 'main': return mainProjects;
+      case 'mini': return miniProjects;
+      case 'certifications': return certifications;
+      default: return mainProjects;
     }
+  };
+
+  const nextProject = () => {
+    const projects = getCurrentProjects();
+    setCurrentIndex(prev => ({
+      ...prev,
+      [activeCategory]: (prev[activeCategory] + 1) % projects.length
+    }));
+    setFlippedCard(null);
+    setShuffleKey(prev => prev + 1);
+  };
+
+  const prevProject = () => {
+    const projects = getCurrentProjects();
+    setCurrentIndex(prev => ({
+      ...prev,
+      [activeCategory]: prev[activeCategory] === 0 ? projects.length - 1 : prev[activeCategory] - 1
+    }));
+    setFlippedCard(null);
+    setShuffleKey(prev => prev + 1);
   };
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
     setFlippedCard(null);
+    setShuffleKey(prev => prev + 1);
+  };
+
+  const getVisibleCards = () => {
+    const projects = getCurrentProjects();
+    const current = currentIndex[activeCategory];
+    const visibleCards = [];
+    
+    for (let i = 0; i < Math.min(5, projects.length); i++) {
+      const index = (current + i) % projects.length;
+      visibleCards.push({ ...projects[index], stackIndex: i });
+    }
+    
+    return visibleCards;
   };
 
   return (
-    <section id="projects" className="section" aria-label="Projects section">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section id="projects" className="projects-section" aria-label="Projects section">
+      <div className="projects-container">
+        <div className="projects-header">
           <motion.h2
-            className="text-4xl font-bold mb-2"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
+            className="projects-title"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
             My Projects & Certifications
           </motion.h2>
           <motion.p
-            className="text-lg text-gray-300"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
+            className="projects-subtitle"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             What I've been working on and achieved
           </motion.p>
-          <div className="category-selector flex justify-center mt-6 relative">
+          
+          {/* Category Selector */}
+          <div className="category-selector">
             <motion.button
               className={`category-btn ${activeCategory === 'main' ? 'active' : ''}`}
               onClick={() => handleCategoryClick('main')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={activeCategory === 'main' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
-              transition={{ duration: 0.2 }}
-              aria-label="View Main Projects"
             >
               Main Projects
-              {activeCategory === 'main' && (
-                <motion.div
-                  className="category-underline"
-                  layoutId="category-underline"
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                />
-              )}
             </motion.button>
+            
             <motion.button
               className={`category-btn ${activeCategory === 'mini' ? 'active' : ''}`}
               onClick={() => handleCategoryClick('mini')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={activeCategory === 'mini' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
-              transition={{ duration: 0.2 }}
-              aria-label="View Mini Projects"
             >
               Mini Projects
-              {activeCategory === 'mini' && (
-                <motion.div
-                  className="category-underline"
-                  layoutId="category-underline"
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                />
-              )}
             </motion.button>
-            
             
             <motion.button
               className={`category-btn ${activeCategory === 'certifications' ? 'active' : ''}`}
               onClick={() => handleCategoryClick('certifications')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={activeCategory === 'certifications' ? { color: '#3b82f6' } : { color: 'rgba(255, 255, 255, 0.6)' }}
-              transition={{ duration: 0.2 }}
-              aria-label="View Certifications"
             >
               Certificates
-              {activeCategory === 'certifications' && (
-                <motion.div
-                  className="category-underline"
-                  layoutId="category-underline"
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                />
-              )}
             </motion.button>
           </div>
         </div>
 
-        {/* Main Projects Carousel */}
-        <AnimatePresence>
-          {activeCategory === 'main' && (
-            <motion.div
-              key="main"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+        {/* Photo Stack Display */}
+        <div className="stack-display">
+          <div className="stack-wrapper">
+            
+            {/* Navigation Buttons */}
+            <motion.button
+              onClick={prevProject}
+              className="navigation-btn prev"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Previous project"
             >
-              <div className="relative">
-                <button
-                  className="carousel-button left-0"
-                  onClick={() => scroll('left', mainScrollRef)}
-                  aria-label="Scroll main projects carousel left"
-                >
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <div
-                  className="carousel-container flex overflow-x-auto scroll-smooth"
-                  ref={mainScrollRef}
-                  role="group"
-                  aria-label="Main project cards"
-                >
-                  {mainProjects.map((project, index) => (
-                    <motion.div
-                      key={index}
-                      className="project-card w-[320px] mx-3"
-                      variants={fadeIn}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: index * 0.2 }}
-                      onHoverStart={() => setFlippedCard(`main-${index}`)}
-                      onHoverEnd={() => setFlippedCard(null)}
-                      onClick={() => setFlippedCard(flippedCard === `main-${index}` ? null : `main-${index}`)}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          className="project-item relative w-full h-full"
-                          variants={flip}
-                          initial="front"
-                          animate={flippedCard === `main-${index}` ? 'back' : 'front'}
-                          style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
-                        >
-                          {/* Front Side */}
-                          <motion.div
-                            className="front absolute w-full h-full flex flex-col"
-                            style={{ backfaceVisibility: 'hidden' }}
-                          >
-                            <div className="project-img mb-4">
-                              <img
-                                src={project.image}
-                                alt={project.title}
-                                className="rounded-lg w-full h-56 object-cover"
-                                loading="lazy"
-                              />
-                            </div>
-                            <div className="project-content flex-grow">
-                              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                              <div className="project-tags flex flex-wrap gap-2 mb-4">
-                                {project.tags.map((tag, idx) => (
-                                  <span
-                                    key={idx}
-                                    className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </motion.div>
-                          {/* Back Side */}
-                          <motion.div
-                            className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
-                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                          >
-                            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                            <p className="mb-4 text-sm">{project.extendedDescription}</p>
-                            <div className="flex flex-wrap gap-3 justify-center">
-                              <a
-                                href={project.github}
-                                className="btn btn-primary btn-sm flex items-center"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <i className="fas fa-eye mr-2"></i> View Project
-                              </a>
-                              {project.website && (
-                                <a
-                                  href={project.website}
-                                  className="btn btn-outline btn-sm flex items-center"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
+              <svg className="navigation-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </motion.button>
+
+            {/* Photo Stack Container */}
+            <div className="photo-stack-container">
+              <AnimatePresence mode="wait">
+                {getVisibleCards().map((project, index) => (
+                  <motion.div
+                    key={`${activeCategory}-${project.title}-${shuffleKey}`}
+                    custom={index}
+                    variants={stackVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="photo-card"
+                    onClick={index === 0 ? () => setFlippedCard(flippedCard === `${activeCategory}-current` ? null : `${activeCategory}-current`) : nextProject}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={index === 0 ? `Flip card to view details for ${project.title}` : `Navigate to ${project.title}`}
+                  >
+                    <div className="photo-card-inner">
+                      
+                      <div className={`card-flipper ${flippedCard === `${activeCategory}-current` && index === 0 ? 'flipped' : ''}`}>
+                        
+                        {/* Front Side */}
+                        <div className="card-face card-front">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="card-image"
+                            loading="lazy"
+                          />
+                          
+                          {/* Polaroid-style bottom section */}
+                          <div className="card-content">
+                            <h3 className="card-title">{project.title}</h3>
+                            <div className="card-tags">
+                              {project.tags.slice(0, 3).map((tag, idx) => (
+                                <span
+                                  key={idx}
+                                  className={`card-tag ${getTagClass(tag)}`}
                                 >
-                                  <i className="fas fa-globe mr-2"></i> Visit Website
-                                </a>
+                                  {tag}
+                                </span>
+                              ))}
+                              {project.tags.length > 3 && (
+                                <span className="card-tag overflow">
+                                  +{project.tags.length - 3}
+                                </span>
                               )}
                             </div>
-                          </motion.div>
-                        </motion.div>
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-                <button
-                  className="carousel-button right-0"
-                  onClick={() => scroll('right', mainScrollRef)}
-                  aria-label="Scroll main projects carousel right"
-                >
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                          </div>
+                        </div>
 
-        {/* Mini Projects Carousel */}
-        <AnimatePresence>
-          {activeCategory === 'mini' && (
-            <motion.div
-              key="mini"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative">
-                <button
-                  className="carousel-button left-0"
-                  onClick={() => scroll('left', miniScrollRef)}
-                  aria-label="Scroll mini projects carousel left"
-                >
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <div
-                  className="carousel-container flex overflow-x-auto scroll-smooth"
-                  ref={miniScrollRef}
-                  role="group"
-                  aria-label="Mini project cards"
-                >
-                  {miniProjects.map((project, index) => (
-                    <motion.div
-                      key={index}
-                      className="project-card w-[320px] mx-3"
-                      variants={fadeIn}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: index * 0.2 }}
-                      onHoverStart={() => setFlippedCard(`mini-${index}`)}
-                      onHoverEnd={() => setFlippedCard(null)}
-                      onClick={() => setFlippedCard(flippedCard === `mini-${index}` ? null : `mini-${index}`)}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          className="project-item relative w-full h-full"
-                          variants={flip}
-                          initial="front"
-                          animate={flippedCard === `mini-${index}` ? 'back' : 'front'}
-                          style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
-                        >
-                          {/* Front Side */}
-                          <motion.div
-                            className="front absolute w-full h-full flex flex-col"
-                            style={{ backfaceVisibility: 'hidden' }}
-                          >
-                            <div className="project-img mb-4">
-                              <img
-                                src={project.image}
-                                alt={project.title}
-                                className="rounded-lg w-full h-56 object-cover"
-                                loading="lazy"
-                              />
-                            </div>
-                            <div className="project-content flex-grow">
-                              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                              <div className="project-tags flex flex-wrap gap-2 mb-4">
-                                {project.tags.map((tag, idx) => (
-                                  <span
-                                    key={idx}
-                                    className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </motion.div>
-                          {/* Back Side */}
-                          <motion.div
-                            className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
-                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                          >
-                            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                            <p className="mb-4 text-sm">{project.extendedDescription}</p>
-                            <div className="flex flex-wrap gap-3 justify-center">
-                              <a
-                                href={project.github}
-                                className="btn btn-primary btn-sm flex items-center"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <i className="fas fa-eye mr-2"></i> View Project
-                              </a>
-                              {project.website && (
-                                <a
-                                  href={project.website}
-                                  className="btn btn-outline btn-sm flex items-center"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
+                        {/* Back Side */}
+                        <div className="card-face card-back">
+                          <div>
+                            <h3 className="back-title">{project.title}</h3>
+                            <p className="back-description">{project.extendedDescription}</p>
+                            <div className="back-tags">
+                              {project.tags.map((tag, idx) => (
+                                <span
+                                  key={idx}
+                                  className={`card-tag ${getTagClass(tag)}`}
                                 >
-                                  <i className="fas fa-globe mr-2"></i> Visit Website
-                                </a>
-                              )}
+                                  {tag}
+                                </span>
+                              ))}
                             </div>
-                          </motion.div>
-                        </motion.div>
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-                <button
-                  className="carousel-button right-0"
-                  onClick={() => scroll('right', miniScrollRef)}
-                  aria-label="Scroll mini projects carousel right"
-                >
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-       
-
-        {/* Certifications Carousel */}
-        <AnimatePresence>
-          {activeCategory === 'certifications' && (
-            <motion.div
-              key="certifications"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative">
-                <button
-                  className="carousel-button left-0"
-                  onClick={() => scroll('left', certScrollRef)}
-                  aria-label="Scroll certifications carousel left"
-                >
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <div
-                  className="carousel-container flex overflow-x-auto scroll-smooth"
-                  ref={certScrollRef}
-                  role="group"
-                  aria-label="Certification cards"
-                >
-                  {certifications.map((cert, index) => (
-                    <motion.div
-                      key={index}
-                      className="project-card w-[320px] mx-3"
-                      variants={fadeIn}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: index * 0.2 }}
-                      onHoverStart={() => setFlippedCard(`cert-${index}`)}
-                      onHoverEnd={() => setFlippedCard(null)}
-                      onClick={() => setFlippedCard(flippedCard === `cert-${index}` ? null : `cert-${index}`)}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          className="project-item relative w-full h-full"
-                          variants={flip}
-                          initial="front"
-                          animate={flippedCard === `cert-${index}` ? 'back' : 'front'}
-                          style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
-                        >
-                          {/* Front Side */}
-                          <motion.div
-                            className="front absolute w-full h-full flex flex-col"
-                            style={{ backfaceVisibility: 'hidden' }}
-                          >
-                            <div className="project-img mb-4">
-                              <img
-                                src={cert.image}
-                                alt={cert.title}
-                                className="rounded-lg w-full h-56 object-cover"
-                                loading="lazy"
-                              />
-                            </div>
-                            <div className="project-content flex-grow">
-                              <h3 className="text-xl font-semibold mb-2">{cert.title}</h3>
-                              <div className="project-tags flex flex-wrap gap-2 mb-4">
-                                {cert.tags.map((tag, idx) => (
-                                  <span
-                                    key={idx}
-                                    className={`project-tag ${getTagColor(tag)} px-2 py-1 rounded text-sm bg-opacity-30`}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </motion.div>
-                          {/* Back Side */}
-                          <motion.div
-                            className="back absolute w-full h-full bg-gray-800 bg-opacity-90 rounded-lg p-6 flex flex-col justify-center"
-                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                          >
-                            <h3 className="text-xl font-semibold mb-2">{cert.title}</h3>
-                            <p className="mb-4 text-sm">{cert.extendedDescription}</p>
-                            <div className="flex flex-wrap gap-3 justify-center">
+                          </div>
+                          
+                          <div className="back-actions">
+                            <a
+                              href={project.github || project.link}
+                              className="action-btn primary"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <svg className="action-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                              </svg>
+                              View Project
+                            </a>
+                            {project.website && (
                               <a
-                                href={cert.link}
-                                className="btn btn-primary btn-sm flex items-center"
+                                href={project.website}
+                                className="action-btn secondary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <i className="fas fa-eye mr-2"></i> View Certificate
+                                <svg className="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                Visit Website
                               </a>
-                            </div>
-                          </motion.div>
-                        </motion.div>
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-                <button
-                  className="carousel-button right-0"
-                  onClick={() => scroll('right', certScrollRef)}
-                  aria-label="Scroll certifications carousel right"
-                >
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            <motion.button
+              onClick={nextProject}
+              className="navigation-btn next"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Next project"
+            >
+              <svg className="navigation-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Project Counter and Info */}
+        <div className="project-counter">
+          <div className="counter-badge">
+            <span className="counter-text">
+              {currentIndex[activeCategory] + 1} of {getCurrentProjects().length}
+            </span>
+            <div className="counter-divider"></div>
+            
+          </div>
+        </div>
+
+        {/* Enhanced Instructions */}
+        
       </div>
     </section>
   );
