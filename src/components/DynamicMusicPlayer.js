@@ -28,29 +28,12 @@ const DynamicMusicPlayer = () => {
   // Sample songs - replace with your local music files
   const songs = [
     {
-      title: "Midnight Dreams",
-      artist: "Ashen Composer",
+      title: "Lose My Mind",
+      artist: "Don Toliver feat. Doja Cat",
       src: "/music/song1.mp3", // Place your music files in public/music/
       cover: "/images/album1.jpg" // Place album covers in public/images/
     },
-    {
-      title: "Digital Horizon",
-      artist: "Tech Beats",
-      src: "/music/song2.mp3",
-      cover: "/images/album2.jpg"
-    },
-    {
-      title: "Code Symphony",
-      artist: "Dev Sounds",
-      src: "/music/song3.mp3",
-      cover: "/images/album3.jpg"
-    },
-    {
-      title: "Neural Networks",
-      artist: "AI Music",
-      src: "/music/song4.mp3",
-      cover: "/images/album4.jpg"
-    }
+    
   ];
 
   const currentSong = songs[currentSongIndex];
